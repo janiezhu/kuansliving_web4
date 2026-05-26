@@ -325,7 +325,7 @@ a { text-decoration: none; color: inherit; }
   display: inline-flex; align-items: center; gap: 10px;
   align-self: center;
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.55);
+  border: none;
   border-radius: 999px;
   padding: 6px 18px 6px 6px;
   margin-bottom: 48px;
@@ -348,38 +348,50 @@ a { text-decoration: none; color: inherit; }
   color: rgba(255,255,255,0.72); letter-spacing: .05em;
 }
 .hero-eyebrow { display: none; }
-/* 主標題 — 置中，CreamFont 字體 */
+/* 主標題容器 */
 .hero-title {
-  font-family: var(--font-display); font-weight: normal; font-style: normal;
-  font-size: clamp(2.6rem, 6.5vw, 6.4rem);
-  color: var(--white); line-height: 1.1;
-  margin-bottom: 24px;
   width: 100%; text-align: center;
+  margin-bottom: 24px;
   opacity: 0; transform: translateY(30px);
   animation: fadeUp 1s var(--ease) 0.5s forwards;
 }
-/* 中文標題行：強制同一排，置中 */
-.hero-title-zh {
+/* KUAN'S LIVING 品牌 Logo 圖檔 */
+.hero-brand-img {
   display: block;
-  white-space: nowrap;
-  text-align: center;
-  margin-bottom: 0;
+  width: auto;
+  max-width: min(860px, 85vw);
+  height: auto;
+  margin: 0 auto 20px;
+  filter: brightness(0) invert(1);
+  object-fit: contain;
 }
+/* 英文副標 */
 .hero-en {
   font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 300;
-  font-size: clamp(1.05rem, 1.85vw, 1.35rem);
-  color: rgba(255,255,255,0.52); letter-spacing: .06em;
-  margin-top: 5px;
+  font-size: clamp(0.85rem, 1.45vw, 1.05rem);
+  color: rgba(255,255,255,0.55); letter-spacing: .08em;
   display: block; text-align: center;
+  margin-top: 0;
   opacity: 0; transform: translateY(20px);
   animation: fadeUp 1s var(--ease) 0.75s forwards;
+}
+/* 中文副標 — CreamFont */
+.hero-title-zh {
+  display: block;
+  font-family: var(--font-display); font-weight: normal;
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-align: center;
+  white-space: nowrap;
+  margin-top: 8px;
 }
 /* ── Hero Mobile RWD ─────────────────────────────────────── */
 @media(max-width: 768px) {
   .hero-content { padding: 0 28px; }
-  .hero-title { font-size: clamp(3.2rem, 9vw, 4.5rem); }
-  .hero-title-zh { white-space: normal; }
-  .hero-en { font-size: clamp(0.95rem, 3.8vw, 1.1rem); }
+  .hero-brand { font-size: clamp(2rem, 9.5vw, 3.5rem); letter-spacing: 0.14em; white-space: normal; }
+  .hero-title-zh { white-space: normal; font-size: clamp(0.8rem, 3.5vw, 0.95rem); }
+  .hero-en { font-size: clamp(0.8rem, 3.2vw, 0.95rem); }
 }
 
 /* CTA 按鈕區 — 置中 */
@@ -943,12 +955,12 @@ a.service-row { text-decoration: none; display: flex; gap: 20px; align-items: fl
       <span class="hero-badge-label">Since 1991 · Taipei &amp; Milano</span>
     </div>
     <h1 class="hero-title">
-      <span class="hero-title-zh">承襲東西文化底蘊</span>
+      <img src="index-LOGO_eng.png" alt="KUAN'S LIVING" class="hero-brand-img">
       <em class="hero-en">Where Eastern Mastery Meets Western Refinement</em>
+      <span class="hero-title-zh">承襲東西文化底蘊</span>
     </h1>
     <div class="hero-cta">
-      <a href="linens-bedroom.html" class="btn-hero btn-fill">探索寢飾選品 ↗</a>
-      <a href="about.html" class="btn-hero btn-ghost">品牌故事</a>
+      <a href="about.html" class="btn-hero btn-fill">品牌故事</a>
     </div>
   </div>
   <div class="hero-scroll">
