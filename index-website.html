@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUAN'S LIVING | 寬庭美學 — Scroll Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300&family=Noto+Sans+TC:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans TC', sans-serif; background: #0A0A0A; color: #1A1A1A; overflow-x: hidden; }
+img { display: block; width: 100%; object-fit: cover; }
+a { text-decoration: none; color: inherit; }
+
+@font-face {
+  font-family: 'CreamFont';
+  src: url('font/creamfont-3.1.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --black:  #0A0A0A;
+  --dark:   #111111;
+  --white:  #FFFFFF;
+  --cream:  #F5F0EA;
+  --gold:   #C9A96E;
+  --sand:   #C8B49A;
+  --stone:  #888070;
+  --mist:   #D4D0C8;
+  --font-en: 'Montserrat', sans-serif;
+  --font-zh: 'Noto Sans TC', sans-serif;
+  --font-display: 'CreamFont', 'Noto Sans TC', sans-serif;
+  --ease:   cubic-bezier(.16,1,.3,1);
+}
+
+/* ── NAVIGATION ──────────────────────────────────────────── */
+#top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.45s ease, backdrop-filter 0.45s ease, border-color 0.45s ease;
+}
+/* 捲動於深色區段：整體透明，只保留各 pill Component */
+#top-nav.nav-scrolled {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+}
+/* 捲動至白底區段：白色毛玻璃 */
+#top-nav.light-nav {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.nav-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 48px; height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-en); font-size: 13px; font-weight: 300;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--white);
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,0.48);
+  border: none;
+  border-radius: 999px;
+  padding: 7px 18px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: color 0.3s ease, background 0.3s ease;
+}
+#top-nav.light-nav .nav-logo {
+  color: var(--black);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.nav-logo img { height: 20px; width: auto; filter: brightness(0) invert(1); transition: filter 0.3s ease; }
+#top-nav.light-nav .nav-logo img { filter: none; }
+/* Nav 整體連結群組 pill — 毛玻璃霧化效果（Digitize 圖一風格）*/
+.nav-links-wrap {
+  display: flex; align-items: center;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  padding: 0 6px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+#top-nav.light-nav .nav-links-wrap {
+  border-color: rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+.nav-main { display: flex; list-style: none; gap: 0; }
+.nav-main > li { position: relative; height: 44px; display: flex; align-items: center; padding: 0 16px; }
+.nav-main > li > a {
+  font-family: var(--font-zh); font-size: 13.5px;
+  color: rgba(255,255,255,0.78);
+  cursor: default; white-space: nowrap;
+  position: relative;
+  transition: color 0.3s ease;
+}
+/* Hover 底線動效 — Digitize 風格 */
+.nav-main > li > a::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: rgba(255,255,255,0.9);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s cubic-bezier(.16,1,.3,1);
+}
+.nav-main > li:hover > a { color: rgba(255,255,255,1); }
+.nav-main > li:hover > a::after { transform: scaleX(1); }
+/* Light-nav：深色文字 + 金色底線 */
+#top-nav.light-nav .nav-main > li > a { color: rgba(0,0,0,0.62); }
+#top-nav.light-nav .nav-main > li > a::after { background: var(--gold); }
+#top-nav.light-nav .nav-main > li:hover > a { color: var(--gold); }
+.nav-main > li.nav-direct > a { cursor: pointer; }
+/* 購物網站 nav-pill：與其他連結一致，無個別邊框 */
+.nav-main > li.nav-pill { padding: 0 16px; }
+
+/* Dropdown */
+.nav-dropdown, .dropdown {
+  position: absolute; top: calc(100% + 14px); left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(10,10,10,0.96);
+  border: 1px solid rgba(255,255,255,0.08);
+  min-width: 200px; padding: 8px 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 1100; box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  list-style: none;
+}
+.nav-main > li:hover .nav-dropdown,
+.nav-item:hover .dropdown {
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown li, .dropdown li { list-style: none; }
+.nav-dropdown li a, .dropdown a {
+  display: block; padding: 11px 22px;
+  font-family: var(--font-zh); font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  transition: color .18s ease, background .18s ease;
+}
+.nav-dropdown li a::after, .dropdown a::after { display: none !important; }
+.nav-dropdown li a:hover, .dropdown a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.lang-switch { display: flex; gap: 8px; font-family: var(--font-en); font-size: 11px; }
+.lang-switch a { color: rgba(255,255,255,0.45); transition: color 0.3s; }
+.lang-switch a.active, .lang-switch a:hover { color: rgba(255,255,255,1); }
+.lang-switch span { color: rgba(255,255,255,0.18) !important; }
+#top-nav.light-nav .lang-switch a { color: rgba(0,0,0,0.4); }
+#top-nav.light-nav .lang-switch a.active, #top-nav.light-nav .lang-switch a:hover { color: var(--gold); }
+#top-nav.light-nav .lang-switch span { color: rgba(0,0,0,0.2) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s ease; }
+#top-nav.light-nav .hamburger span { background: var(--black); }
+@media(max-width:1024px) { .nav-main { display: none; } .hamburger { display: flex; } }
+@media(max-width:768px) { .nav-inner { padding: 0 24px; } }
+
+/* Mobile menu */
+#mobile-menu {
+  position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+  background: var(--dark); z-index: 999;
+  padding: 36px 28px;
+  transform: translateX(100%); transition: transform 0.35s var(--ease);
+  display: flex; flex-direction: column; overflow-y: auto;
+}
+#mobile-menu.open { transform: translateX(0); }
+.mobile-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.mobile-item-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 20px; font-weight: 300; color: var(--white);
+  padding: 16px 0; cursor: pointer;
+}
+.mobile-arrow { font-size: 12px; color: var(--gold); transition: transform 0.3s ease; }
+.mobile-item.open .mobile-arrow { transform: rotate(180deg); }
+.mobile-sub { display: none; flex-direction: column; padding: 4px 0 12px 14px; }
+.mobile-item.open .mobile-sub { display: flex; }
+.mobile-sub a { font-size: 14px; color: rgba(255,255,255,0.55); padding: 9px 0; }
+.mobile-sub a:hover { color: var(--gold); }
+.mobile-direct {
+  display: block; font-size: 20px; font-weight: 300; color: var(--white);
+  padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.mobile-direct:hover { color: var(--gold); }
+#mobile-menu .mobile-sub a { border-bottom: none !important; }
+
+/* ── SCROLL REVEAL SYSTEM ─────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+.reveal-left {
+  opacity: 0; transform: translateX(-48px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal-left.active { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0; transform: translateX(48px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal-right.active { opacity: 1; transform: translateX(0); }
+.reveal-scale {
+  opacity: 0; transform: scale(0.92);
+  transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
+}
+.reveal-scale.active { opacity: 1; transform: scale(1); }
+
+/* ── 01 HERO ─────────────────────────────────────────────── */
+#hero {
+  height: 100vh; min-height: 640px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--black);
+}
+.hero-video-wrap {
+  position: absolute; inset: 0;
+  overflow: hidden;
+}
+.hero-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0.6;
+}
+/* ── Digitize 動態效果 ─────────────────────────────────── */
+/* Ken Burns — 慢速縮放背景 */
+@keyframes kenBurns {
+  0%   { transform: scale(1.08) translateY(-6px); }
+  100% { transform: scale(1.0)  translateY(0); }
+}
+.hero-video-wrap video {
+  animation: kenBurns 20s cubic-bezier(.25,.46,.45,.94) forwards;
+}
+/* 星點閃爍 — 兩層交錯 */
+@keyframes starTwinkle {
+  0%,100% { opacity: 0.15; }
+  50%      { opacity: 0.95; }
+}
+@keyframes starTwinkle2 {
+  0%,100% { opacity: 0.8; }
+  60%      { opacity: 0.1; }
+}
+.hero-stars {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+}
+.hero-stars::before, .hero-stars::after {
+  content: ''; position: absolute; inset: 0;
+}
+.hero-stars::before {
+  background-image:
+    radial-gradient(1.2px 1.2px at 8%  6%,  rgba(255,255,255,.9) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 22% 4%,  rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 38% 9%,  rgba(255,255,255,.85) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 55% 3%,  rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1.3px 1.3px at 70% 7%,  rgba(255,255,255,.8) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 84% 5%,  rgba(255,255,255,.65) 0%, transparent 100%),
+    radial-gradient(1.4px 1.4px at 93% 11%, rgba(255,255,255,.75) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 15% 14%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 47% 17%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 78% 13%, rgba(255,255,255,.6) 0%, transparent 100%);
+  animation: starTwinkle 4.5s ease-in-out infinite;
+}
+.hero-stars::after {
+  background-image:
+    radial-gradient(1px   1px   at 18% 8%,  rgba(255,255,255,.65) 0%, transparent 100%),
+    radial-gradient(1.4px 1.4px at 33% 5%,  rgba(255,255,255,.8) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 60% 10%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(1.3px 1.3px at 75% 4%,  rgba(255,255,255,.75) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 88% 15%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 5%  18%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 43% 20%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 65% 16%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 96% 8%,  rgba(255,255,255,.5) 0%, transparent 100%);
+  animation: starTwinkle2 3.8s ease-in-out infinite 1.8s;
+}
+/* 中央環境光 Glow — 脈動 */
+@keyframes ambientGlow {
+  0%,100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.9;  transform: scale(1.06); }
+}
+.hero-ambient {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 50% 68%, rgba(12,38,18,.6) 0%, transparent 70%);
+  animation: ambientGlow 9s ease-in-out infinite;
+}
+
+/* 四角 Vignette — Digitize 風格暗角 */
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 130% 45% at 50% 0%, rgba(0,0,0,0.75) 0%, transparent 100%),
+    radial-gradient(ellipse 130% 55% at 50% 100%, rgba(0,0,0,0.85) 0%, transparent 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.04) 35%, rgba(0,0,0,0.04) 65%, rgba(0,0,0,0.25) 100%);
+}
+/* 置中內容區 */
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 860px; margin: 0 auto;
+  padding: 0 48px; width: 100%;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+/* Badge Pill — Digitize 風格 */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  align-self: center;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 999px;
+  padding: 6px 18px 6px 6px;
+  margin-bottom: 48px;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 1s var(--ease) 0.2s forwards;
+}
+.hero-badge-avatars { display: flex; }
+.hero-badge-av {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--gold);
+  border: 1.5px solid rgba(0,0,0,0.3);
+  font-family: var(--font-en); font-size: 7px; font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  display: flex; align-items: center; justify-content: center;
+  letter-spacing: 0;
+}
+.hero-badge-av:nth-child(2) { background: var(--sand); margin-left: -7px; }
+.hero-badge-label {
+  font-family: var(--font-en); font-size: 11.5px; font-weight: 400;
+  color: rgba(255,255,255,0.72); letter-spacing: .05em;
+}
+.hero-eyebrow { display: none; }
+/* 主標題 — 置中，CreamFont 字體 */
+.hero-title {
+  font-family: var(--font-display); font-weight: normal; font-style: normal;
+  font-size: clamp(2.6rem, 6.5vw, 6.4rem);
+  color: var(--white); line-height: 1.1;
+  margin-bottom: 24px;
+  width: 100%; text-align: center;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 1s var(--ease) 0.5s forwards;
+}
+/* 中文標題行：強制同一排，置中 */
+.hero-title-zh {
+  display: block;
+  white-space: nowrap;
+  text-align: center;
+  margin-bottom: 0;
+}
+.hero-en {
+  font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 300;
+  font-size: clamp(1.05rem, 1.85vw, 1.35rem);
+  color: rgba(255,255,255,0.52); letter-spacing: .06em;
+  margin-top: 5px;
+  display: block; text-align: center;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 1s var(--ease) 0.75s forwards;
+}
+/* ── Hero Mobile RWD ─────────────────────────────────────── */
+@media(max-width: 768px) {
+  .hero-content { padding: 0 28px; }
+  .hero-title { font-size: clamp(3.2rem, 9vw, 4.5rem); }
+  .hero-title-zh { white-space: normal; }
+  .hero-en { font-size: clamp(0.95rem, 3.8vw, 1.1rem); }
+}
+
+/* CTA 按鈕區 — 置中 */
+.hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap; margin-top: 52px;
+  justify-content: center;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 1s var(--ease) 0.95s forwards;
+}
+.btn-hero {
+  font-family: var(--font-en); font-size: 11px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 14px 36px; display: inline-flex; align-items: center; gap: 10px;
+  border-radius: 999px;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.25s cubic-bezier(.16,1,.3,1);
+  cursor: pointer;
+}
+/* 主按鈕 — 輪廓 Pill，hover 時放大（完全對應圖二 Digitize 風格）*/
+.btn-fill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.65);
+  color: var(--white);
+}
+.btn-fill:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,1);
+  transform: scale(1.05);
+}
+/* 副按鈕 — 純文字 + 播放圖示，hover 時同樣微放大 */
+.btn-ghost {
+  color: rgba(255,255,255,0.68);
+  background: none; border: none; padding-left: 4px;
+}
+.btn-ghost::before { content: '▶'; font-size: 9px; opacity: 0.75; }
+.btn-ghost:hover { color: var(--white); transform: scale(1.05); }
+/* Scroll 指示器 — 置中底部 */
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeUp 1s var(--ease) 1.4s forwards;
+}
+.hero-scroll span { font-family: var(--font-en); font-size: 8.5px; letter-spacing: .35em; color: rgba(255,255,255,0.35); }
+.scroll-line { width: 1px; height: 52px; background: rgba(255,255,255,0.2); animation: scrollLine 2.2s ease-in-out infinite; }
+@keyframes scrollLine { 0%,100%{ transform:scaleY(1); opacity:.25; } 50%{ transform:scaleY(.45); opacity:1; } }
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+/* ── 02 INTRO STATEMENT (STICKY PIN) ─────────────────────── */
+#intro-pin { height: 100vh; background: transparent; }
+.intro-sticky {
+  position: sticky; top: 0; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.intro-bg-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0;
+  transition: opacity 0.85s ease;
+}
+.intro-bg-1 { background-image: url('jpg/01_ABOUT OUR BRAND.JPG'); opacity: 0.8; }
+.intro-bg-2 { background-image: url('jpg/02_20211002-DSCF2234.jpg'); }
+.intro-bg-3 { background-image: url('jpg/03_TIM6277.jpg'); }
+.intro-overlay {
+  position: absolute; inset: 0;
+  background: rgba(245,240,234,0.40);
+}
+.intro-text {
+  position: relative; z-index: 2;
+  max-width: 900px; padding: 0 48px;
+  text-align: center;
+}
+.intro-label {
+  font-family: var(--font-en); font-size: 9.5px; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 28px;
+}
+.intro-heading {
+  font-family: var(--font-zh); font-weight: 200;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  color: var(--black); line-height: 1.3;
+  overflow: hidden;
+}
+.intro-line { display: block; transform: translateY(100%); transition: transform 0.9s var(--ease); }
+.intro-line.show { transform: translateY(0); }
+.intro-line:nth-child(2) { transition-delay: 0.1s; }
+.intro-line:nth-child(3) { transition-delay: 0.2s; }
+.intro-sub {
+  font-family: var(--font-en); font-style: italic; font-weight: 300;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--stone); margin-top: 24px; letter-spacing: .03em;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+}
+.intro-sub.show { opacity: 1; transform: translateY(0); }
+
+/* ── 03 STATS ────────────────────────────────────────────── */
+#stats {
+  background: #FFFFFF;
+  padding: 0;
+  display: flex; align-items: center;
+  min-height: 260px;
+}
+.stats-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 48px; width: 100%;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 0; border-left: 1px solid rgba(0,0,0,0.1);
+}
+.stat-item {
+  padding: 48px 36px;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--font-en); font-size: 3.5rem; font-weight: 200;
+  color: #000000; line-height: 1; display: block;
+}
+.stat-unit { font-size: 1.6rem; }
+.stat-label { font-family: var(--font-zh); font-size: 12px; color: var(--stone); margin-top: 10px; }
+@media(max-width:768px) { .stats-inner { grid-template-columns: repeat(2,1fr); } .stat-item:nth-child(even) { border-right: none; } }
+
+/* ── 04 BRAND STORY PIN ──────────────────────────────────── */
+#story-pin { height: 280vh; }
+.story-sticky {
+  position: sticky; top: 0; height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+.story-img-side {
+  position: relative; overflow: hidden;
+  background: var(--black);
+}
+.story-img-inner {
+  position: absolute; inset: -10%;
+  background-image: url('https://www.kuansliving.com/wp-content/uploads/2025/12/IMG_6893-1024x768.jpg');
+  background-size: cover; background-position: center;
+  transition: transform 0.1s linear;
+}
+.story-text-side {
+  background: var(--cream);
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 80px 72px;
+  overflow: hidden;
+}
+.story-slide {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  pointer-events: none; position: absolute; inset: 80px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.story-slide.active {
+  opacity: 1; transform: translateX(0); pointer-events: auto;
+}
+.story-slide-label {
+  font-family: var(--font-en); font-size: 9px; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px; display: block;
+}
+.story-slide h2 {
+  font-family: var(--font-zh); font-weight: 200;
+  font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--black);
+  line-height: 1.3; margin-bottom: 20px;
+}
+.story-slide p {
+  font-family: var(--font-zh); font-size: 14.5px; line-height: 2;
+  color: var(--stone);
+}
+.story-progress {
+  display: flex; gap: 8px; margin-top: 36px;
+}
+.story-dot {
+  width: 32px; height: 1px; background: var(--mist);
+  transition: background 0.3s ease, width 0.3s ease;
+}
+.story-dot.active { background: var(--gold); width: 56px; }
+@media(max-width:768px) {
+  .story-sticky { grid-template-columns: 1fr; }
+  .story-img-side { height: 45vh; position: relative; }
+}
+
+/* ── 05 COLLECTIONS GRID ─────────────────────────────────── */
+#collections-wf { background: var(--white); padding: 120px 0; }
+.collections-header {
+  max-width: 1400px; margin: 0 auto 72px;
+  padding: 0 48px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.collections-header h2 {
+  font-family: var(--font-zh); font-weight: 200;
+  font-size: clamp(2.2rem, 4vw, 3.8rem); color: var(--black); line-height: 1.2;
+}
+.collections-header .view-all {
+  font-family: var(--font-en); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--stone); border-bottom: 1px solid var(--mist);
+  padding-bottom: 3px; white-space: nowrap;
+  transition: color 0.3s, border-color 0.3s;
+}
+.collections-header .view-all:hover { color: var(--gold); border-color: var(--gold); }
+.collections-masonry {
+  max-width: 1400px; margin: 0 auto; padding: 0 48px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 60px;
+  gap: 16px;
+}
+.coll-item {
+  position: relative; overflow: hidden; cursor: pointer;
+  background: #eee;
+}
+.coll-item:nth-child(1) { grid-column: span 7; grid-row: span 7; }
+.coll-item:nth-child(2) { grid-column: span 5; grid-row: span 4; }
+.coll-item:nth-child(3) { grid-column: span 5; grid-row: span 3; }
+.coll-item:nth-child(4) { grid-column: span 4; grid-row: span 5; }
+.coll-item:nth-child(5) { grid-column: span 8; grid-row: span 5; }
+.coll-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
+.coll-item:hover img { transform: scale(1.05); }
+.coll-item-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.coll-item:hover .coll-item-overlay { opacity: 1; }
+.coll-item-info {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 20px;
+  transform: translateY(8px); transition: transform 0.4s ease; opacity: 0;
+}
+.coll-item:hover .coll-item-info { transform: translateY(0); opacity: 1; }
+.coll-item-en { font-family: var(--font-en); font-size: 9px; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 4px; }
+.coll-item-zh { font-family: var(--font-zh); font-size: 15px; font-weight: 400; color: var(--white); }
+@media(max-width:900px) {
+  .collections-masonry { grid-template-columns: 1fr 1fr; grid-auto-rows: 240px; }
+  .coll-item:nth-child(1),.coll-item:nth-child(2),.coll-item:nth-child(3),
+  .coll-item:nth-child(4),.coll-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
+}
+
+/* ── 06 HORIZONTAL MARQUEE STRIP ─────────────────────────── */
+#media-strip { background: var(--white); padding: 40px 0; overflow: hidden; border-top: 1px solid #E8E0D8; border-bottom: 1px solid #E8E0D8; }
+.marquee-track { display: flex; gap: 64px; white-space: nowrap; will-change: transform; }
+.marquee-item { font-family: var(--font-en); font-size: 13px; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; color: #000000; flex-shrink: 0; }
+.marquee-sep { color: var(--gold); font-size: 10px; }
+
+/* ── 07 SELECT BRANDS (HOVER REVEAL) ─────────────────────── */
+#select-wf { background: var(--cream); padding: 120px 0; }
+.select-container { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+.select-header { margin-bottom: 72px; }
+.select-header .section-label {
+  font-family: var(--font-en); font-size: 9.5px; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 16px;
+}
+.select-header h2 {
+  font-family: var(--font-zh); font-weight: 200;
+  font-size: clamp(2rem, 3.5vw, 3rem); color: var(--black); line-height: 1.3;
+}
+.brand-list { display: flex; flex-direction: column; }
+.brand-item {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--mist);
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: padding 0.4s var(--ease);
+}
+.brand-item:last-child { border-bottom: 1px solid var(--mist); }
+.brand-item::before {
+  content: ''; position: absolute; left: 0; bottom: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width 0.5s var(--ease);
+}
+.brand-item:hover::before { width: 100%; }
+.brand-item:hover { padding: 36px 0; }
+.brand-name {
+  font-family: var(--font-en); font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 200; color: var(--black); letter-spacing: .04em;
+  transition: color 0.3s ease;
+}
+.brand-item:hover .brand-name { color: var(--gold); }
+.brand-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.brand-origin { font-family: var(--font-en); font-size: 10px; letter-spacing: .15em; color: var(--stone); }
+.brand-type { font-family: var(--font-zh); font-size: 12px; color: var(--mist); }
+.brand-arrow {
+  font-family: var(--font-en); font-size: 18px; color: var(--stone);
+  transform: translateX(-8px); opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.brand-item:hover .brand-arrow { transform: translateX(0); opacity: 1; color: var(--gold); }
+
+/* ── 08 FULL SCREEN DARK SECTION (SERVICES PIN) ──────────── */
+#services-pin { height: auto; background: var(--black); }
+.services-sticky {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; overflow: hidden;
+  padding: 120px 0;
+}
+.services-bg {
+  position: absolute; inset: 0;
+  opacity: 0.15;
+  background-image: url('https://www.kuansliving.com/wp-content/uploads/2025/07/2014-飯店供應-台北文華東方總套g-edited-scaled.jpg');
+  background-size: cover; background-position: center;
+}
+.services-content {
+  max-width: 1400px; margin: 0 auto; padding: 0 48px;
+  position: relative; z-index: 2; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.services-left { }
+.services-eyebrow {
+  font-family: var(--font-en); font-size: 9.5px; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 24px;
+}
+.services-title {
+  font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 200;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  color: var(--white); line-height: 1.12; margin-bottom: 32px;
+}
+.services-sub {
+  font-family: var(--font-zh); font-size: 14.5px; line-height: 2;
+  color: rgba(255,255,255,0.55);
+}
+.services-right { display: flex; flex-direction: column; gap: 0; }
+.service-row {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.service-row.active { opacity: 1; transform: translateY(0); }
+.service-num {
+  font-family: var(--font-en); font-size: 11px; font-weight: 500;
+  letter-spacing: .18em; color: var(--gold); min-width: 36px; padding-top: 4px;
+}
+.service-info h4 { font-family: var(--font-zh); font-size: 15px; font-weight: 400; color: var(--white); margin-bottom: 6px; transition: color 0.3s ease; }
+.service-info p { font-family: var(--font-zh); font-size: 12.5px; line-height: 1.8; color: rgba(255,255,255,0.45); }
+.service-row:hover .service-info h4 { color: #C9A96E; }
+.service-row:hover .service-num { color: #C9A96E; }
+a.service-row { text-decoration: none; display: flex; gap: 20px; align-items: flex-start; }
+@media(max-width:900px) { .services-content { grid-template-columns: 1fr; } }
+
+/* ── 09 CSR IMPACT ───────────────────────────────────────── */
+#csr-wf { background: var(--white); padding: 120px 0; }
+.csr-container { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+.csr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.csr-img-wrap { position: relative; height: 560px; overflow: hidden; }
+.csr-img-wrap img { height: 100%; object-fit: cover; transform: scale(1.05); transition: transform 1.2s var(--ease); }
+.csr-img-wrap.active img { transform: scale(1); }
+.csr-text { }
+.csr-label { font-family: var(--font-en); font-size: 9.5px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 20px; }
+.csr-heading { font-family: var(--font-zh); font-weight: 200; font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--black); line-height: 1.3; margin-bottom: 20px; }
+.csr-body { font-family: var(--font-zh); font-size: 14.5px; line-height: 2; color: var(--stone); margin-bottom: 40px; }
+.csr-stats { display: flex; gap: 40px; margin-bottom: 40px; }
+.csr-stat .num { font-family: var(--font-en); font-size: 2.6rem; font-weight: 200; color: var(--black); line-height: 1; }
+.csr-stat .lbl { font-size: 11.5px; color: var(--stone); margin-top: 6px; }
+@media(max-width:900px) { .csr-grid { grid-template-columns: 1fr; } .csr-img-wrap { height: 320px; } }
+
+/* ── 10 TIMELINE HORIZONTAL ──────────────────────────────── */
+#timeline-wf {
+  background: #FFFFFF;
+  padding: 80px 0 60px;
+  box-sizing: border-box;
+  height: 520px;
+  overflow: hidden;
+}
+.tl-header { max-width: 1400px; margin: 0 auto 48px; padding: 0 48px; }
+.tl-header-label { font-family: var(--font-en); font-size: 9.5px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 16px; }
+.tl-header h2 { font-family: var(--font-display); font-weight: normal; font-size: clamp(2rem, 3.5vw, 3.2rem); color: #000000; }
+.tl-scroll-wrap { overflow-x: auto; overflow-y: visible; cursor: grab; padding: 16px 48px 40px; }
+@media(max-width: 768px) {
+  #timeline-wf { height: auto; padding: 56px 0 40px; overflow: hidden; }
+  .tl-header { padding: 0 24px; margin-bottom: 36px; }
+  .tl-scroll-wrap {
+    padding: 16px 0 32px;
+    width: 100%; overflow: hidden !important;
+  }
+  .tl-item { min-width: 220px; padding: 0 28px 0 0; }
+}
+.tl-scroll-wrap::-webkit-scrollbar { height: 2px; }
+.tl-scroll-wrap::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+.tl-scroll-wrap::-webkit-scrollbar-thumb { background: var(--gold); }
+.tl-track { display: flex; gap: 0; min-width: max-content; position: relative; will-change: transform; }
+.tl-track::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 1px; background: rgba(0,0,0,0.1); }
+.tl-item { min-width: 280px; padding: 0 40px 0 0; position: relative; }
+.tl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-bottom: 28px; position: relative; z-index: 2; flex-shrink: 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.tl-item:hover .tl-dot { transform: scale(1.6); box-shadow: 0 0 0 4px rgba(201,169,110,0.2); }
+.tl-year { font-family: var(--font-en); font-size: 2rem; font-weight: 200; color: #000000; display: block; margin-bottom: 6px; }
+.tl-phase { font-family: var(--font-en); font-size: 7.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px; }
+.tl-title { font-family: var(--font-zh); font-size: 13px; font-weight: 400; color: rgba(0,0,0,0.85); margin-bottom: 8px; line-height: 1.5; }
+.tl-body { font-family: var(--font-zh); font-size: 11.5px; font-weight: 300; color: rgba(0,0,0,0.38); line-height: 1.8; }
+
+/* ── 11 NEWSLETTER ───────────────────────────────────────── */
+#newsletter-wf {
+  background: #FFFFFF; padding: 120px 0;
+  position: relative; overflow: hidden;
+}
+.nl-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, transparent 60%); }
+.nl-inner { max-width: 680px; margin: 0 auto; text-align: center; padding: 0 24px; position: relative; z-index: 2; }
+.nl-label { font-family: var(--font-en); font-size: 9.5px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 20px; }
+.nl-heading { font-family: var(--font-display); font-weight: normal; font-size: clamp(2rem, 3.5vw, 3rem); color: #000000; line-height: 1.3; margin-bottom: 12px; }
+.nl-sub { font-family: 'Montserrat', sans-serif; font-style: normal; font-size: 14px; color: rgba(0,0,0,0.35); margin-bottom: 44px; }
+.nl-form { display: flex; align-items: center; border: 1px solid rgba(0,0,0,0.12); background: rgba(0,0,0,0.04); border-radius: 999px; padding: 5px; }
+.nl-input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; padding: 14px 22px; font-family: var(--font-zh); font-size: 14px; color: #000000; }
+.nl-input::placeholder { color: rgba(0,0,0,0.28); }
+.nl-btn { background: var(--gold); color: var(--white); border: none; padding: 14px 24px; font-family: var(--font-en); font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: background 0.3s ease; white-space: nowrap; flex-shrink: 0; border-radius: 999px; }
+.nl-btn:hover { background: #b5893a; }
+@media(max-width:600px) {
+  .nl-form { flex-direction: row; }
+  .nl-input { padding: 14px 16px; font-size: 13px; }
+  .nl-btn { padding: 14px 20px; width: auto; }
+  .nl-inner { padding: 0 20px; }
+}
+.social-row { display: flex; gap: 12px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+.social-tag { font-family: var(--font-en); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; padding: 8px 16px; border: 1px solid rgba(0,0,0,0.15); color: rgba(0,0,0,0.45); cursor: pointer; transition: all 0.3s ease; }
+.social-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+#footer { background: #060606; padding: 72px 0 36px; }
+.footer-top { max-width: 1400px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 48px; margin-bottom: 40px; }
+.footer-logo { font-family: var(--font-en); font-size: 14px; font-weight: 300; letter-spacing: .2em; color: var(--white); margin-bottom: 12px; }
+.footer-tag { font-family: var(--font-en); font-style: italic; font-size: 11px; color: rgba(255,255,255,0.22); line-height: 1.8; }
+/* footer nav 置中行 */
+.footer-nav { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; }
+.footer-nav a { font-family: var(--font-zh); font-size: 12.5px; color: rgba(255,255,255,0.38); transition: color 0.3s; }
+.footer-nav a:hover { color: var(--white); }
+@media(max-width:768px) { .footer-top { grid-template-columns: 1fr; } .footer-nav { justify-content: flex-start; } }
+.footer-btm { max-width: 1400px; margin: 0 auto; padding: 0 48px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 10.5px; color: rgba(255,255,255,0.18); line-height: 1.6; }
+.footer-soc { display: flex; gap: 16px; }
+.footer-soc a { font-family: var(--font-en); font-size: 9.5px; letter-spacing: .08em; color: rgba(255,255,255,0.3); transition: color 0.3s; }
+.footer-soc a:hover { color: var(--white); }
+@media(max-width:900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+@media(max-width:500px) { .footer-top { grid-template-columns: 1fr; } }
+
+/* ── UTILS ───────────────────────────────────────────────── */
+.container { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+@media(max-width:768px) { .container, .nav-inner { padding-left: 24px; padding-right: 24px; } }
+.btn-gold { background: var(--gold); color: var(--white); font-family: var(--font-en); font-size: 10.5px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; padding: 13px 28px; display: inline-flex; align-items: center; gap: 10px; transition: background 0.3s; cursor: pointer; }
+.btn-gold:hover { background: #b5893a; }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav id="top-nav">
+  <div class="nav-inner">
+    <a href="index-webflow-w.html" class="nav-logo">
+      <img src="LOGO-B_eng.png" alt="KUAN'S LIVING"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span style="display:none">KUAN'S LIVING</span>
+    </a>
+    <div class="nav-links-wrap">
+      <ul class="nav-main">
+        <li>
+          <a href="javascript:void(0)">關於寬庭</a>
+          <ul class="nav-dropdown">
+            <li><a href="about.html">品牌故事</a></li>
+            <li><a href="warehouse.html">體驗空間</a></li>
+            <li><a href="csr.html">品牌責任</a></li>
+            <li><a href="stores.html">服務據點</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0)">寢飾選品</a>
+          <ul class="nav-dropdown">
+            <li><a href="linens-bedroom.html">寢室系列</a></li>
+            <li><a href="linens-bath.html">浴室系列</a></li>
+            <li><a href="select-design.html">當代設計</a></li>
+            <li><a href="select-craft.html">工藝精選</a></li>
+            <li><a href="select-art.html">裝飾藝術</a></li>
+            <li><a href="select-fragrance.html">居家香氛</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0)">企業合作</a>
+          <ul class="nav-dropdown">
+            <li><a href="services-aviation.html">航空機上寢具</a></li>
+            <li><a href="services-hotel.html">酒店寢飾定製</a></li>
+            <li><a href="services-gifts.html">企業禮贈品</a></li>
+            <li><a href="services-interior.html">軟裝設計服務</a></li>
+          </ul>
+        </li>
+        <li class="nav-direct">
+          <a href="https://shop.kuansliving.com" target="_blank">購物網站</a>
+        </li>
+        <li class="nav-direct">
+          <a href="magazine/Kuans Living Magazine _offline_.html" target="_blank">線上雜誌</a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <a href="#" class="active">繁</a>
+        <span style="color:rgba(255,255,255,0.2)">|</span>
+        <a href="#">EN</a>
+        <span style="color:rgba(255,255,255,0.2)">|</span>
+        <a href="#">簡</a>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <div class="mobile-item">
+    <div class="mobile-item-header" onclick="toggleMobileItem(this)">關於寬庭<span class="mobile-arrow">▾</span></div>
+    <div class="mobile-sub">
+      <a href="about.html" onclick="toggleMenu()">品牌故事</a>
+      <a href="warehouse.html" onclick="toggleMenu()">體驗空間</a>
+      <a href="csr.html" onclick="toggleMenu()">品牌責任</a>
+      <a href="stores.html" onclick="toggleMenu()">服務據點</a>
+    </div>
+  </div>
+  <div class="mobile-item">
+    <div class="mobile-item-header" onclick="toggleMobileItem(this)">寢飾選品<span class="mobile-arrow">▾</span></div>
+    <div class="mobile-sub">
+      <a href="linens-bedroom.html" onclick="toggleMenu()">寢室系列</a>
+      <a href="linens-bath.html" onclick="toggleMenu()">浴室系列</a>
+      <a href="select-design.html" onclick="toggleMenu()">當代設計</a>
+      <a href="select-craft.html" onclick="toggleMenu()">工藝精選</a>
+      <a href="select-art.html" onclick="toggleMenu()">裝飾藝術</a>
+      <a href="select-fragrance.html" onclick="toggleMenu()">居家香氛</a>
+    </div>
+  </div>
+  <div class="mobile-item">
+    <div class="mobile-item-header" onclick="toggleMobileItem(this)">企業合作<span class="mobile-arrow">▾</span></div>
+    <div class="mobile-sub">
+      <a href="services-aviation.html" onclick="toggleMenu()">航空機上寢具</a>
+      <a href="services-hotel.html" onclick="toggleMenu()">酒店寢飾定製</a>
+      <a href="services-gifts.html" onclick="toggleMenu()">企業禮贈品</a>
+      <a href="services-interior.html" onclick="toggleMenu()">軟裝設計服務</a>
+    </div>
+  </div>
+  <a href="https://shop.kuansliving.com" target="_blank" class="mobile-direct">購物網站</a>
+  <a href="magazine/Kuans Living Magazine _offline_.html" target="_blank" class="mobile-direct">線上雜誌</a>
+  <div style="display:flex;gap:16px;margin-top:24px;">
+    <a href="#" style="font-family:var(--font-en);font-size:13px;color:var(--gold)">繁</a>
+    <a href="#" style="font-family:var(--font-en);font-size:13px;color:rgba(255,255,255,0.4)">EN</a>
+    <a href="#" style="font-family:var(--font-en);font-size:13px;color:rgba(255,255,255,0.4)">簡</a>
+  </div>
+</div>
+
+<!-- ── 01 HERO ──────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-video-wrap">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="mp4/index-kv-3.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-stars"></div>
+  <div class="hero-ambient"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <!-- Badge Pill — Digitize 風格 -->
+    <div class="hero-badge">
+      <div class="hero-badge-avatars">
+        <div class="hero-badge-av">TW</div>
+        <div class="hero-badge-av">IT</div>
+      </div>
+      <span class="hero-badge-label">Since 1991 · Taipei &amp; Milano</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="hero-title-zh">承襲東西文化底蘊</span>
+      <em class="hero-en">Where Eastern Mastery Meets Western Refinement</em>
+    </h1>
+    <div class="hero-cta">
+      <a href="linens-bedroom.html" class="btn-hero btn-fill">探索寢飾選品 ↗</a>
+      <a href="about.html" class="btn-hero btn-ghost">品牌故事</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ── 04 TIMELINE ───────────────────────────────────────────── -->
+<section id="timeline-wf">
+  <div class="tl-header">
+    <span class="tl-header-label">Brand Milestones · 重要里程</span>
+    <h2 class="reveal">三十餘年，一針一線</h2>
+  </div>
+  <div class="tl-scroll-wrap" id="tlWrapper">
+    <div class="tl-track">
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">1991</span><span class="tl-phase">品牌奠基 · Foundation</span><p class="tl-title">陳靜寬女士於台北創立寬庭</p><p class="tl-body">亞洲第一個將高訂工藝導入寢飾的品牌。</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">2002</span><span class="tl-phase">國際接軌 · Milano</span><p class="tl-title">米蘭分公司 S.r.l. 誕生</p><p class="tl-body">向全球推廣 Bespoke 高級訂製寢飾系列。</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">2004</span><span class="tl-phase">國際獎項 · Awards</span><p class="tl-title">義大利 Grandesign 大賞</p><p class="tl-body">首度參展巴黎 Maison & Objet Paris。</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">2012</span><span class="tl-phase">品牌進化 · Evolution</span><p class="tl-title">正式更名「寬庭美學」</p><p class="tl-body">《LIBERTA》百年日報全版報導。</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">2014</span><span class="tl-phase">文華東方 · Hospitality</span><p class="tl-title">台北文華東方總統套房寢飾</p><p class="tl-body">推出「寬庭囍事」婚慶服務。</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">2016</span><span class="tl-phase">航空殊榮 · Aviation</span><p class="tl-title">漢堡空品獎最佳機上寢具首獎</p><p class="tl-body">連續兩年獲國際航空業肯定。</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">2022</span><span class="tl-phase">美學教育 · CSR</span><p class="tl-title">全國第一間美學教學中心</p><p class="tl-body">45 門課程，8,000 人次參與。</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><span class="tl-year">2025</span><span class="tl-phase">嶄新視野 · New Horizon</span><p class="tl-title">米蘭設計週 · 上海會館落成</p><p class="tl-body">全新高訂系列正式亮相。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 STATS ─────────────────────────────────────────────── -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-num" data-target="34">0<span class="stat-unit">+</span></span>
+      <p class="stat-label">品牌年資</p>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <span class="stat-num" data-target="17">0</span>
+      <p class="stat-label">全台服務據點</p>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <span class="stat-num" data-target="20">0<span class="stat-unit">+</span></span>
+      <p class="stat-label">全球城市足跡</p>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <span class="stat-num" data-target="310">0<span class="stat-unit">+</span></span>
+      <p class="stat-label">CSR 合作學校</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── 08 SERVICES PIN ────────────────────────────────────────── -->
+<div id="services-pin">
+  <div class="services-sticky" id="servicesSticky">
+    <div class="services-bg"></div>
+    <div class="services-content">
+      <div class="services-left">
+        <span class="services-eyebrow">Corporate Services · 企業合作</span>
+        <h2 class="services-title">Where<br>Artistry<br>Meets<br>Excellence</h2>
+        <p class="services-sub">三十餘年深耕高端市場，為國際頂尖合作夥伴提供專屬定製服務。</p>
+      </div>
+      <div class="services-right" id="serviceRows">
+        <a href="services-aviation.html" class="service-row">
+          <span class="service-num">01</span>
+          <div class="service-info">
+            <h4>航空機上寢具</h4>
+            <p>連續榮獲德國漢堡國際空品獎「最佳機上寢具首獎」。</p>
+          </div>
+        </a>
+        <a href="services-hotel.html" class="service-row">
+          <span class="service-num">02</span>
+          <div class="service-info">
+            <h4>酒店寢飾定製</h4>
+            <p>台北文華東方、高雄然一等亞洲頂級酒店寢飾合作夥伴。</p>
+          </div>
+        </a>
+        <a href="services-gifts.html" class="service-row">
+          <span class="service-num">03</span>
+          <div class="service-info">
+            <h4>企業禮贈品</h4>
+            <p>量身定製的專屬禮贈品，彰顯尊榮品味，提升品牌形象。</p>
+          </div>
+        </a>
+        <a href="services-interior.html" class="service-row">
+          <span class="service-num">04</span>
+          <div class="service-info">
+            <h4>軟裝設計服務</h4>
+            <p>頂級私宅與商業空間策畫，兼顧功能、比例與美學平衡。</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MARQUEE ────────────────────────────────────────────────── -->
+<div id="media-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Marie Claire</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Vogue Living</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Wallpaper*</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Elle Décor</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">台北文華東方</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">中華航空</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Hamburg Onboard Awards</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Maison & Objet Paris</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Marie Claire</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Vogue Living</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Wallpaper*</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Elle Décor</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">台北文華東方</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">中華航空</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Hamburg Onboard Awards</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Maison & Objet Paris</span><span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<!-- ── 11 NEWSLETTER ───────────────────────────────────────────── -->
+<section id="newsletter-wf">
+  <div class="nl-bg"></div>
+  <div class="nl-inner">
+    <span class="nl-label">Stay in Touch · 訂閱電子報</span>
+    <h2 class="nl-heading reveal">接收寬庭最新<br>美學企劃與優惠</h2>
+    <p class="nl-sub reveal reveal-delay-1">Be the first to discover new collections and exclusive events.</p>
+    <div class="nl-form reveal reveal-delay-2">
+      <input class="nl-input" type="email" placeholder="請輸入您的電子信箱 / Your email">
+      <button class="nl-btn">訂閱</button>
+    </div>
+    <div class="social-row">
+      <a href="https://www.facebook.com/kuansliving/" target="_blank" class="social-tag">Facebook</a>
+      <a href="https://kuans.co/WDDI9" target="_blank" class="social-tag">Instagram</a>
+      <a href="https://kuans.co/QBei1" target="_blank" class="social-tag">LINE</a>
+      <a href="https://kuans.co/AMgzq" target="_blank" class="social-tag">購物網站</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer id="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">KUAN'S LIVING</div>
+      <div class="footer-tag">Where Eastern Mastery<br>Meets Western Refinement.<br><br>寬庭美學股份有限公司<br>Est. 1991 · Taipei & Milano</div>
+    </div>
+    <div class="footer-nav">
+      <a href="about.html">關於寬庭</a>
+      <a href="warehouse.html">體驗空間</a>
+      <a href="stores.html">服務據點</a>
+    </div>
+    <div></div>
+  </div>
+  <div class="footer-btm">
+    <p class="footer-copy">© 2026 KUAN'S LIVING 寬庭美學股份有限公司 · All Rights Reserved</p>
+    <div class="footer-soc">
+      <a href="https://www.facebook.com/kuansliving/" target="_blank">Facebook</a>
+      <a href="https://kuans.co/WDDI9" target="_blank">Instagram</a>
+      <a href="https://kuans.co/QBei1" target="_blank">LINE</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── JAVASCRIPT ─────────────────────────────────────────────── -->
+<script>
+// ── Mobile menu ──────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+function toggleMobileItem(header) {
+  const item = header.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.mobile-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── Nav hover JS (dropdown reliability) ─────────────────────
+document.querySelectorAll('.nav-main > li').forEach(li => {
+  const dd = li.querySelector('.nav-dropdown');
+  if (!dd) return;
+  let t;
+  li.addEventListener('mouseenter', () => { clearTimeout(t); dd.style.opacity='1'; dd.style.pointerEvents='all'; dd.style.transform='translateX(-50%) translateY(0)'; });
+  li.addEventListener('mouseleave', () => { t = setTimeout(() => { dd.style.opacity='0'; dd.style.pointerEvents='none'; dd.style.transform='translateX(-50%) translateY(-8px)'; }, 120); });
+  dd.addEventListener('mouseenter', () => clearTimeout(t));
+  dd.addEventListener('mouseleave', () => { t = setTimeout(() => { dd.style.opacity='0'; dd.style.pointerEvents='none'; dd.style.transform='translateX(-50%) translateY(-8px)'; }, 120); });
+});
+
+// ── Nav color switch (dark→light on cream sections) ──────────
+const lightSections = ['intro-pin','collections-wf','select-wf','csr-wf'];
+const nav = document.getElementById('top-nav');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  let isLight = false;
+  lightSections.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    if (r.top <= 0 && r.bottom >= 0) isLight = true;
+  });
+  nav.classList.toggle('light-nav', isLight);
+  nav.classList.toggle('nav-scrolled', scrollY > 40 && !isLight);
+}, { passive: true });
+
+// ── IntersectionObserver — reveal elements ────────────────────
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('active');
+      // Service rows stagger
+      if (e.target.id === 'servicesSection') {
+        document.querySelectorAll('.service-row').forEach((row, i) => {
+          setTimeout(() => row.classList.add('active'), i * 150);
+        });
+      }
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .csr-img-wrap').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// Service rows trigger when services section is visible
+const servicesObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.service-row').forEach((row, i) => {
+        setTimeout(() => row.classList.add('active'), i * 180);
+      });
+      servicesObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+const svcEl = document.getElementById('services-pin');
+if (svcEl) servicesObs.observe(svcEl);
+
+
+// ── Intro text reveal on scroll ──────────────────────────────
+const introObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.intro-line').forEach((l, i) => {
+        setTimeout(() => l.classList.add('show'), i * 120);
+      });
+      setTimeout(() => {
+        const sub = document.querySelector('.intro-sub');
+        if (sub) sub.classList.add('show');
+      }, 500);
+    }
+  });
+}, { threshold: 0.3 });
+const introEl = document.getElementById('introSticky');
+if (introEl) introObs.observe(introEl);
+
+// ── Story pin: change slide based on scroll progress ─────────
+const storyPin = document.getElementById('story-pin');
+const slides = ['slide0','slide1','slide2'];
+
+function updateStory() {
+  if (!storyPin) return;
+  const rect = storyPin.getBoundingClientRect();
+  const progress = -rect.top / (storyPin.offsetHeight - window.innerHeight);
+  const clamped = Math.max(0, Math.min(1, progress));
+  const idx = Math.min(slides.length - 1, Math.floor(clamped * slides.length));
+
+  slides.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', i === idx);
+  });
+
+  // Parallax image
+  const img = document.getElementById('storyImg');
+  if (img) img.style.transform = `scale(1.08) translateY(${clamped * 40}px)`;
+}
+
+window.addEventListener('scroll', () => {
+  updateStory();
+}, { passive: true });
+
+// ── Intro-pin 三張圖輪播（滾一下換一張，共三張）────────────
+(function() {
+  const introPin = document.getElementById('intro-pin');
+  if (!introPin) return;
+
+  const bgIds        = ['introBg1', 'introBg2', 'introBg3'];
+  const FADE_OPACITY = 0.8;
+  const FADE_MS      = 850;
+  const LOCK_MS      = 950;
+  // state: 0=圖一, 1=圖二, 2=圖三, 3=空白(圖三已淡出)
+  let state          = 0;
+  let isTransitioning = false;
+  let isExiting       = false;
+
+  // state 0-2 顯示對應圖; state 3 全部 opacity:0
+  function showState(s) {
+    bgIds.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.style.opacity = (i === s) ? FADE_OPACITY : '0';
+    });
+  }
+
+  function isIntroInView() {
+    const r = introPin.getBoundingClientRect();
+    return r.top > -8 && r.top < window.innerHeight * 0.25;
+  }
+
+  // 離開區塊：先顯示圖三（消除空白），再 smooth scroll，重置回圖一
+  function exitToNext() {
+    isExiting = true; isTransitioning = true;
+    showState(2); // 維持圖三可見，不出現空白
+    setTimeout(() => {
+      const next = document.getElementById('media-strip')
+                || document.getElementById('timeline-wf');
+      if (next) next.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        state = 0; showState(0); // 重置至圖一，供下次重複
+        isExiting = false; isTransitioning = false;
+      }, 800);
+    }, state === 3 ? FADE_MS : 50);
+  }
+
+  /* ── 滾輪 ───────────────────────────────────── */
+  window.addEventListener('wheel', function(e) {
+    if (!isIntroInView() || isExiting) return;
+
+    // 圖一往上滾：放行回 hero
+    if (e.deltaY < 0 && state === 0) return;
+
+    e.preventDefault();
+    if (isTransitioning) return;
+
+    if (e.deltaY > 0) {
+      if (state < 3) {
+        // 滾1: 0→1 滾2: 1→2 滾3: 2→3(空白)
+        isTransitioning = true;
+        state++;
+        showState(state);
+        setTimeout(() => { isTransitioning = false; }, LOCK_MS);
+      } else {
+        // 滾4（空白態）：維持圖三離開
+        exitToNext();
+      }
+    } else {
+      // 往上滾：退回上一狀態
+      isTransitioning = true;
+      state--;
+      showState(state);
+      setTimeout(() => { isTransitioning = false; }, LOCK_MS);
+    }
+  }, { passive: false });
+
+  /* ── 觸控裝置 ───────────────────────────────── */
+  let tStartY = 0;
+  introPin.addEventListener('touchstart', e => {
+    tStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  introPin.addEventListener('touchend', function(e) {
+    if (!isIntroInView() || isExiting || isTransitioning) return;
+    const dy = tStartY - e.changedTouches[0].clientY;
+    if (Math.abs(dy) < 40) return;
+
+    if (dy > 0) {
+      if (state < 3) {
+        isTransitioning = true;
+        state++; showState(state);
+        setTimeout(() => { isTransitioning = false; }, LOCK_MS);
+      } else {
+        exitToNext();
+      }
+    } else if (dy < 0 && state > 0) {
+      isTransitioning = true;
+      state--; showState(state);
+      setTimeout(() => { isTransitioning = false; }, LOCK_MS);
+    }
+  }, { passive: true });
+})();
+
+// ── Number counter ───────────────────────────────────────────
+function animateCounter(el, target, suffix) {
+  const duration = 1800;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = Math.floor(ease * target);
+    el.innerHTML = val.toLocaleString() + (suffix || '');
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target);
+    if (!target) return;
+    const unit = el.querySelector('.stat-unit');
+    const suffix = unit ? unit.outerHTML : '';
+    animateCounter(el, target, suffix);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+// ── Timeline drag scroll ─────────────────────────────────────
+// ── 共用滾動速度：Mobile 加快一級 ────────────────────────────
+const SCROLL_SPEED = window.innerWidth <= 768 ? 0.85 : 0.55;
+
+const tlWrapper = document.getElementById('tlWrapper');
+const tlTrack   = tlWrapper ? tlWrapper.querySelector('.tl-track') : null;
+let tlScrolling = true, tlHovered = false, tlDragging = false, tlDragX, tlDragLeft;
+let tlPos = 0; // for mobile transform
+
+function isMobile() { return window.innerWidth <= 768; }
+
+function tlAnimate() {
+  if (tlScrolling && !tlHovered && !tlDragging && tlWrapper) {
+    if (isMobile() && tlTrack) {
+      // Mobile / iOS Safari：transform 方式（iOS scrollLeft 無法程式控制）
+      const maxPos = tlTrack.scrollWidth - tlWrapper.clientWidth;
+      if (maxPos > 0) {
+        tlPos += SCROLL_SPEED;
+        if (tlPos >= maxPos) tlPos = 0;
+        tlTrack.style.webkitTransform = 'translateX(-' + tlPos + 'px)';
+        tlTrack.style.transform       = 'translateX(-' + tlPos + 'px)';
+      }
+    } else {
+      // Desktop：scrollLeft 方式（可拖曳）
+      const max = tlWrapper.scrollWidth - tlWrapper.clientWidth;
+      tlWrapper.scrollLeft = tlWrapper.scrollLeft >= max - 2 ? 0 : tlWrapper.scrollLeft + SCROLL_SPEED;
+    }
+  }
+  requestAnimationFrame(tlAnimate);
+}
+requestAnimationFrame(tlAnimate);
+
+// ── Marquee JS 驅動（hover + touch 暫停，Mobile 同步加速）────
+(function() {
+  const strip = document.getElementById('media-strip');
+  const track = strip ? strip.querySelector('.marquee-track') : null;
+  if (!strip || !track) return;
+
+  let mqPos    = 0;
+  let mqPaused = false;
+  let mqResumeTimer = null;
+  const SPEED  = SCROLL_SPEED;
+
+  function pause()  { mqPaused = true; }
+  function resume() { mqPaused = false; }
+  function resumeAfter(ms) {
+    clearTimeout(mqResumeTimer);
+    mqResumeTimer = setTimeout(resume, ms);
+  }
+
+  function mqAnimate() {
+    if (!mqPaused) {
+      const halfW = track.scrollWidth / 2;
+      mqPos += SPEED;
+      if (mqPos >= halfW) mqPos = 0;
+      track.style.transform = 'translateX(-' + mqPos + 'px)';
+    }
+    requestAnimationFrame(mqAnimate);
+  }
+  requestAnimationFrame(mqAnimate);
+
+  // Desktop hover
+  strip.addEventListener('mouseenter', pause);
+  strip.addEventListener('mouseleave', resume);
+
+  // Mobile touch：觸碰暫停，放開 1.2s 後繼續
+  strip.addEventListener('touchstart', pause,            { passive: true });
+  strip.addEventListener('touchend',   () => resumeAfter(1200), { passive: true });
+  strip.addEventListener('touchcancel',() => resumeAfter(1200), { passive: true });
+})();
+
+// ── Timeline：Desktop hover + Mobile touch ────────────────────
+if (tlWrapper) {
+  let tlResumeTimer = null;
+  let tlTouchStartX  = 0;
+  let tlTouchLastX   = 0;
+  let tlTouchDragging = false;
+  const DRAG_THRESHOLD = 8; // px，區分點擊與滑動
+
+  // ── Desktop hover ──────────────────────────────────────────
+  tlWrapper.addEventListener('mouseenter', () => { tlHovered = true; });
+  tlWrapper.addEventListener('mouseleave', () => { if (!tlDragging) tlHovered = false; });
+
+  // ── Mobile touch ──────────────────────────────────────────
+  tlWrapper.addEventListener('touchstart', e => {
+    tlHovered = true;
+    tlScrolling = true; // 確保滾動狀態在點擊後能恢復
+    clearTimeout(tlResumeTimer);
+    tlTouchStartX  = e.touches[0].clientX;
+    tlTouchLastX   = tlTouchStartX;
+    tlTouchDragging = false;
+  }, { passive: true });
+
+  tlWrapper.addEventListener('touchmove', e => {
+    if (!isMobile() || !tlTrack) return;
+    const dx     = e.touches[0].clientX - tlTouchLastX;
+    const totalX = Math.abs(e.touches[0].clientX - tlTouchStartX);
+    if (totalX > DRAG_THRESHOLD) tlTouchDragging = true;
+    if (tlTouchDragging) {
+      const maxPos = tlTrack.scrollWidth - tlWrapper.clientWidth;
+      if (maxPos > 0) {
+        tlPos = Math.max(0, Math.min(maxPos, tlPos - dx));
+        tlTrack.style.webkitTransform = 'translateX(-' + tlPos + 'px)';
+        tlTrack.style.transform       = 'translateX(-' + tlPos + 'px)';
+      }
+    }
+    tlTouchLastX = e.touches[0].clientX;
+  }, { passive: true });
+
+  tlWrapper.addEventListener('touchend', () => {
+    // 拖曳結束：0.8s 後繼續；單純點擊：1.5s 後繼續
+    const delay = tlTouchDragging ? 800 : 1500;
+    tlTouchDragging = false;
+    clearTimeout(tlResumeTimer);
+    tlResumeTimer = setTimeout(() => { tlHovered = false; }, delay);
+  }, { passive: true });
+
+  tlWrapper.addEventListener('touchcancel', () => {
+    tlTouchDragging = false;
+    clearTimeout(tlResumeTimer);
+    tlResumeTimer = setTimeout(() => { tlHovered = false; }, 800);
+  }, { passive: true });
+
+  // ── Desktop drag scroll ────────────────────────────────────
+  tlWrapper.addEventListener('mousedown', e => {
+    tlDragging = true; tlHovered = true; tlWrapper.style.cursor = 'grabbing';
+    tlDragX = e.pageX - tlWrapper.offsetLeft; tlDragLeft = tlWrapper.scrollLeft;
+  });
+  document.addEventListener('mouseup', () => {
+    if (!tlDragging) return;
+    tlDragging = false; tlHovered = false; tlWrapper.style.cursor = 'grab';
+  });
+  tlWrapper.addEventListener('mousemove', e => {
+    if (!tlDragging) return;
+    e.preventDefault();
+    tlWrapper.scrollLeft = tlDragLeft - (e.pageX - tlWrapper.offsetLeft - tlDragX) * 1.5;
+  });
+
+  // ── 點擊年份：暫停並 highlight，放手後繼續 ───────────────
+  document.querySelectorAll('.tl-item').forEach(item => {
+    item.addEventListener('click', () => {
+      clearTimeout(tlResumeTimer);
+      tlHovered   = true;
+      tlScrolling = true;
+      const allItems = document.querySelectorAll('.tl-item');
+      allItems.forEach(i => i.style.opacity = '0.4');
+      item.style.opacity = '1';
+
+      if (isMobile() && tlTrack) {
+        // Mobile：直接更新 tlPos
+        const maxPos   = tlTrack.scrollWidth - tlWrapper.clientWidth;
+        const targetPos = Math.max(0, Math.min(maxPos,
+          item.offsetLeft - tlWrapper.clientWidth / 2 + item.offsetWidth / 2));
+        tlPos = targetPos;
+        tlTrack.style.webkitTransform = 'translateX(-' + tlPos + 'px)';
+        tlTrack.style.transform       = 'translateX(-' + tlPos + 'px)';
+      } else {
+        // Desktop：scrollTo
+        const offset = item.offsetLeft - tlWrapper.clientWidth / 2 + item.offsetWidth / 2;
+        tlWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+      }
+
+      // 2 秒後恢復自動滾動，opacity 全部恢復
+      tlResumeTimer = setTimeout(() => {
+        allItems.forEach(i => i.style.opacity = '1');
+        tlHovered = false;
+      }, 2000);
+    });
+  });
+}
+
+// ── Hero 滑鼠視差 — Digitize 風格 ────────────────────────
+(function() {
+  const heroSec = document.getElementById('hero');
+  const heroVid = document.querySelector('.hero-video-wrap');
+  const heroStars = document.querySelector('.hero-stars');
+  const heroAmbient = document.querySelector('.hero-ambient');
+  if (!heroSec || !heroVid) return;
+
+  let tX = 0, tY = 0, cX = 0, cY = 0;
+  let rafId;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animateParallax() {
+    cX = lerp(cX, tX, 0.06);
+    cY = lerp(cY, tY, 0.06);
+    heroVid.style.transform = `translate(${cX}px, ${cY}px)`;
+    if (heroStars)   heroStars.style.transform   = `translate(${cX * 0.4}px, ${cY * 0.4}px)`;
+    if (heroAmbient) heroAmbient.style.transform = `translate(${cX * 0.25}px, ${cY * 0.25}px)`;
+    rafId = requestAnimationFrame(animateParallax);
+  }
+
+  heroSec.addEventListener('mousemove', function(e) {
+    const r = heroSec.getBoundingClientRect();
+    tX = ((e.clientX - r.left) / r.width  - 0.5) * 22;
+    tY = ((e.clientY - r.top)  / r.height - 0.5) * 14;
+    if (!rafId) animateParallax();
+  });
+
+  heroSec.addEventListener('mouseleave', function() {
+    tX = 0; tY = 0;
+    setTimeout(() => { cancelAnimationFrame(rafId); rafId = null; }, 1200);
+  });
+})();
+</script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

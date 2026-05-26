@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企業禮贈品 | KUAN'S LIVING 寬庭美學</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#2A2A2A;background:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+:root{--green:#076C44;--green-dark:#054F32;--green-xl:#E8F2EC;--white:#fff;--cream:#F8F6F2;--mist:#D4DDE1;--stone:#9CA0AE;--gold:#C9A96E;--accent:#C9A96E;--dark:#0D0D0D;--mid:#4A4A4A;--font-en:'Montserrat',sans-serif;--font-zh:'Noto Sans TC',sans-serif;--ease:cubic-bezier(.25,.46,.45,.94);--trans:0.3s var(--ease)}
+.container{max-width:1280px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.container,.nav-inner{padding-left:24px;padding-right:24px}}
+/* ── NAV ── */
+#top-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--mist)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center}
+.nav-logo img{height:22px;width:auto}
+.nav-logo span{font-family:var(--font-en);font-size:13px;font-weight:600;letter-spacing:.25em;color:var(--dark)}
+.nav-main{display:flex;gap:0;list-style:none}
+.nav-main li{list-style:none}
+.nav-item{position:relative}
+.nav-item>a{font-family:var(--font-zh);font-size:13.5px;color:var(--mid);padding:0 16px;height:72px;display:flex;align-items:center;transition:color var(--trans)}
+.nav-item>a:hover{color:var(--accent)}
+/* dropdown */
+.dropdown{position:absolute;top:72px;left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border:1px solid var(--mist);min-width:200px;padding:8px 0;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:1100;box-shadow:0 8px 32px rgba(0,0,0,0.08)}
+.nav-item:hover .dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.dropdown li{list-style:none;padding:0;margin:0}.dropdown a{display:block;padding:11px 20px;font-family:var(--font-zh);font-size:13px;color:var(--mid);white-space:nowrap;transition:color .2s,background .2s}
+.dropdown a:hover{color:var(--accent);background:var(--cream)}
+.dropdown a::before{content:'';display:none}
+.nav-right{display:flex;align-items:center;gap:18px}
+.lang-switch{display:flex;gap:8px;font-family:var(--font-en);font-size:11px;font-weight:500}
+.lang-switch a{color:var(--stone);transition:color var(--trans)}
+.lang-switch a:hover,.lang-switch a.active{color:var(--accent)}
+.lang-switch a.active{border-bottom:1px solid var(--accent)}
+@media(max-width:1024px){.nav-main{display:none}}
+/* ── PAGE HERO ── */
+.page-hero{padding:96px 0 72px;position:relative;overflow:hidden}
+.page-hero.dark{background:var(--dark)}
+.page-hero.cream{background:var(--cream)}
+.page-hero.white{background:var(--white)}
+.breadcrumb{font-family:var(--font-en);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);display:inline-flex;align-items:center;gap:8px;margin-bottom:28px;transition:color var(--trans)}
+.breadcrumb:hover{color:var(--accent)}
+.page-hero.dark .breadcrumb{color:rgba(255,255,255,0.45)}
+.page-hero.dark .breadcrumb:hover{color:var(--gold)}
+.label-en{font-family:var(--font-en);font-size:10px;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
+.page-hero.dark .label-en{color:var(--gold)}
+.page-hero h1{font-family:var(--font-zh);font-weight:300;font-size:clamp(2rem,4vw,3.5rem);line-height:1.25;color:var(--dark);margin-bottom:12px}
+.page-hero.dark h1{color:var(--white)}
+.page-sub{font-family:var(--font-en);font-style:italic;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:300;color:var(--stone);letter-spacing:.04em}
+.page-hero.dark .page-sub{color:rgba(255,255,255,0.4)}
+/* ── CONTENT ── */
+.page-main{padding:80px 0 120px}
+.content-block{margin-bottom:80px}
+.content-block h2{font-weight:300;font-size:clamp(1.5rem,2.5vw,2.2rem);margin-bottom:20px;color:var(--dark)}
+.content-block p{font-size:15px;line-height:2;color:var(--mid);margin-bottom:16px}
+.grid-2c{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.grid-3c{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.grid-4c{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:900px){.grid-2c,.grid-3c{grid-template-columns:1fr}.grid-4c{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.grid-4c{grid-template-columns:1fr}}
+.card{background:var(--cream);padding:36px;border:1px solid var(--mist)}
+.card h3{font-size:1.1rem;font-weight:600;margin-bottom:10px;color:var(--dark)}
+.card p{font-size:13.5px;line-height:1.9;color:var(--mid)}
+.card .en{font-family:var(--font-en);font-size:9px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;display:block}
+.info-row{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--mist)}
+.info-lbl{font-family:var(--font-en);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);min-width:56px;padding-top:2px}
+.info-val{font-size:13.5px;color:var(--mid);line-height:1.7}
+.img-frame{overflow:hidden;height:400px}
+.img-frame img{height:100%;transition:transform .7s var(--ease)}
+.img-frame:hover img{transform:scale(1.03)}
+.section-divider{height:1px;background:var(--mist);margin:60px 0}
+.quote-block{border-left:2px solid var(--accent);padding:20px 28px;background:var(--cream);margin:32px 0}
+.quote-block p{font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--dark);font-style:italic}
+/* ── BTN ── */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-en);font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:13px 28px;transition:var(--trans)}
+.btn-green{background:#C9A96E;color:#fff}
+.btn-green:hover{background:#b5893a}
+.btn-outline{border:1px solid var(--accent);color:var(--accent)}
+.btn-outline:hover{background:var(--accent);color:#fff}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:#333}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+/* ── STAT CHIPS ── */
+.stat-row{display:flex;gap:40px;flex-wrap:wrap;margin:32px 0}
+.stat-chip .num{font-family:var(--font-en);font-size:2.4rem;font-weight:300;color:var(--accent);line-height:1}
+.stat-chip .lbl{font-size:12px;color:var(--stone);margin-top:6px}
+/* ── CSR TAG ── */
+.csr-tag{display:inline-block;font-family:var(--font-en);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding:4px 12px;border:1px solid var(--accent);margin-bottom:12px}
+/* ── MAP BTN ── */
+.map-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-en);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);padding:12px 0;border-bottom:1px solid rgba(201,169,110,.3);margin-top:16px;transition:var(--trans)}
+.map-link:hover{color:var(--dark)}
+/* ── FOOTER ── */
+#footer{background:#2A2A2A;padding:60px 0 32px}
+.footer-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:48px;margin-bottom:40px}
+@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:24px}}
+.footer-logo{font-family:var(--font-en);font-size:14px;font-weight:500;letter-spacing:.18em;color:#fff;margin-bottom:12px}
+.footer-tag{font-family:var(--font-en);font-style:italic;font-size:11px;color:rgba(255,255,255,0.22);line-height:1.8}
+.footer-nav{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
+.footer-nav a{font-family:var(--font-zh);font-size:12.5px;color:rgba(255,255,255,0.38);transition:color .3s}
+.footer-nav a:hover{color:#fff}
+.footer-btm,.footer-bottom{max-width:1280px;margin:0 auto;padding:0 48px;border-top:1px solid rgba(255,255,255,0.06);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:10.5px;color:rgba(255,255,255,0.18);line-height:1.6}
+.footer-soc{display:flex;gap:14px}
+.footer-soc a{font-family:var(--font-en);font-size:9.5px;letter-spacing:.08em;color:rgba(255,255,255,0.35);transition:color .3s}
+.footer-soc a:hover{color:#fff}
+
+/* ── Main nav triggers: hover-only, not clickable ── */
+.nav-main > li > a[href="javascript:void(0)"],
+.nav-item > a[href="javascript:void(0)"] {
+  cursor: default;
+  user-select: none;
+}
+.nav-main > li > a[href="javascript:void(0)"]::after,
+.nav-item > a[href="javascript:void(0)"]::after { display: none; }
+
+/* ── Nav direct links (購物網站 / 線上雜誌) ── */
+.nav-main > li.nav-direct {
+  position: relative;
+}
+.nav-main > li.nav-direct > a {
+  cursor: pointer;
+  font-family: var(--font-zh);
+  font-size: 13.5px;
+  color: var(--charcoal);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  white-space: nowrap;
+  transition: color var(--trans);
+}
+.nav-main > li.nav-direct > a:hover { color: var(--accent); }
+.nav-item.nav-direct > a {
+  cursor: pointer;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+.nav-item.nav-direct > a:hover { color: var(--accent); }
+
+/* ── Mobile accordion menu ── */
+.mobile-item {
+  border-bottom: 1px solid var(--light);
+}
+.mobile-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--charcoal);
+  padding: 16px 0;
+  cursor: pointer;
+  transition: color var(--trans);
+  user-select: none;
+}
+.mobile-item-header:hover { color: var(--accent); }
+.mobile-arrow {
+  font-size: 14px;
+  color: var(--stone);
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+}
+.mobile-item.open .mobile-arrow { transform: rotate(180deg); }
+.mobile-sub {
+  display: none;
+  flex-direction: column;
+  padding: 4px 0 14px 16px;
+  gap: 2px;
+}
+.mobile-item.open .mobile-sub { display: flex; }
+.mobile-sub a {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  color: var(--mid);
+  padding: 10px 0;
+  border-bottom: none !important;
+  display: block;
+  transition: color 0.2s ease;
+}
+.mobile-sub a:hover { color: var(--accent); }
+#mobile-menu .mobile-sub a {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: var(--mid) !important;
+  padding: 10px 0 !important;
+  border-bottom: none !important;
+}
+#mobile-menu .mobile-sub a:hover { color: var(--accent) !important; }
+.mobile-direct {
+  display: block;
+  font-family: var(--font-zh);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--charcoal);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--light);
+  transition: color var(--trans);
+}
+.mobile-direct:hover { color: var(--accent); }
+
+/* ── Hamburger + Mobile menu (sub-pages) ── */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--dark); transition: all 0.3s ease; }
+@media(max-width:1024px) {
+  .nav-main { display: none; }
+  .hamburger { display: flex; }
+}
+#mobile-menu {
+  position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+  background: var(--white, #fff); z-index: 999;
+  padding: 28px 24px;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  display: flex; flex-direction: column; gap: 0;
+  overflow-y: auto;
+}
+#mobile-menu.open { transform: translateX(0); }
+#mobile-menu > a {
+  font-size: 22px; font-weight: 300; color: var(--charcoal, #2A2A2A);
+  padding: 14px 0; border-bottom: 1px solid var(--light, #F2F2F0);
+  transition: color 0.3s ease; display: block;
+}
+#mobile-menu > a:hover { color: var(--accent, #C9A96E); }
+#mobile-menu .mobile-sub a {
+  font-size: 14px !important; font-weight: 400 !important;
+  color: var(--mid, #4A4A4A) !important;
+  padding: 10px 0 !important; border-bottom: none !important;
+  display: block;
+}
+#mobile-menu .mobile-sub a:hover { color: var(--accent, #C9A96E) !important; }
+
+</style>
+</head>
+<body>
+<nav id="top-nav">
+  <div class="nav-inner">
+    <a href="index-website.html" class="nav-logo">
+      <img src="LOGO-B_eng.png" alt="KUAN'S LIVING"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span style="display:none">KUAN'S LIVING</span>
+    </a>
+    <ul class="nav-main">
+      <li class="nav-item">
+        <a href="javascript:void(0)">關於寬庭</a>
+        <ul class="dropdown">
+          <li><a href="about.html">品牌故事</a></li>
+          <li><a href="warehouse.html">體驗空間</a></li>
+          <li><a href="csr.html">品牌責任</a></li>
+          <li><a href="stores.html">服務據點</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="javascript:void(0)">寢飾選品</a>
+        <ul class="dropdown">
+          <li><a href="linens-bedroom.html">寢室系列</a></li>
+          <li><a href="linens-bath.html">浴室系列</a></li>
+          <li><a href="select-design.html">當代設計</a></li>
+          <li><a href="select-craft.html">工藝精選</a></li>
+          <li><a href="select-art.html">裝飾藝術</a></li>
+          <li><a href="select-fragrance.html">居家香氛</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="javascript:void(0)">企業合作</a>
+        <ul class="dropdown">
+          <li><a href="services-hotel.html">酒店寢飾定製</a></li>
+          <li><a href="services-aviation.html">航空機上寢具</a></li>
+          <li><a href="services-gifts.html">企業禮贈品</a></li>
+          <li><a href="services-interior.html">軟裝設計服務</a></li>
+        </ul>
+      </li>
+      <li class="nav-direct">
+        <a href="https://shop.kuansliving.com" target="_blank">購物網站</a>
+      </li>
+      <li class="nav-direct">
+        <a href="magazine/Kuans Living Magazine _offline_.html" target="_blank">線上雜誌</a>
+      </li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <a href="#" class="active">繁</a>
+        <span style="color:var(--mist)">|</span>
+        <a href="#">EN</a>
+        <span style="color:var(--mist)">|</span>
+        <a href="#">簡</a>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="mobile-menu">
+  <div class="mobile-item">
+    <div class="mobile-item-header" onclick="toggleMobileItem(this)">
+      關於寬庭<span class="mobile-arrow">▾</span>
+    </div>
+    <div class="mobile-sub">
+      <a href="about.html" onclick="toggleMenu()">品牌故事</a>
+      <a href="warehouse.html" onclick="toggleMenu()">體驗空間</a>
+      <a href="csr.html" onclick="toggleMenu()">品牌責任</a>
+      <a href="stores.html" onclick="toggleMenu()">服務據點</a>
+    </div>
+  </div>
+  <div class="mobile-item">
+    <div class="mobile-item-header" onclick="toggleMobileItem(this)">
+      寢飾選品<span class="mobile-arrow">▾</span>
+    </div>
+    <div class="mobile-sub">
+      <a href="linens-bedroom.html" onclick="toggleMenu()">寢室系列</a>
+      <a href="linens-bath.html" onclick="toggleMenu()">浴室系列</a>
+      <a href="select-design.html" onclick="toggleMenu()">當代設計</a>
+      <a href="select-craft.html" onclick="toggleMenu()">工藝精選</a>
+      <a href="select-art.html" onclick="toggleMenu()">裝飾藝術</a>
+      <a href="select-fragrance.html" onclick="toggleMenu()">居家香氛</a>
+    </div>
+  </div>
+  <div class="mobile-item">
+    <div class="mobile-item-header" onclick="toggleMobileItem(this)">
+      企業合作<span class="mobile-arrow">▾</span>
+    </div>
+    <div class="mobile-sub">
+      <a href="services-aviation.html" onclick="toggleMenu()">航空機上寢具</a>
+      <a href="services-hotel.html" onclick="toggleMenu()">酒店寢飾定製</a>
+      <a href="services-gifts.html" onclick="toggleMenu()">企業禮贈品</a>
+      <a href="services-interior.html" onclick="toggleMenu()">軟裝設計服務</a>
+    </div>
+  </div>
+  <a href="https://shop.kuansliving.com" target="_blank" class="mobile-direct">購物網站</a>
+  <a href="magazine/Kuans Living Magazine _offline_.html" target="_blank" class="mobile-direct">線上雜誌</a>
+  <div style="display:flex;gap:16px;margin-top:24px;">
+    <a href="#" style="font-family:var(--font-en);font-size:13px;color:var(--accent);">繁</a>
+    <a href="#" style="font-family:var(--font-en);font-size:13px;color:var(--stone);">EN</a>
+    <a href="#" style="font-family:var(--font-en);font-size:13px;color:var(--stone);">簡</a>
+  </div>
+</div>
+<section class="page-hero white">
+  <div class="container">
+    <a href="index-website.html" class="breadcrumb">← 首頁 Home</a>
+    <span class="label-en">Corporate Gifting · 禮贈品</span>
+    <h1>企業禮贈品・寬庭囍事</h1>
+    <p class="page-sub">Bespoke Corporate Gifts — Elevate Your Brand</p>
+  </div>
+</section>
+<main class="page-main">
+  <div class="container">
+
+    <div class="content-block">
+      <h2>量身定製<br>彰顯尊榮品味的禮品</h2>
+      <div class="grid-2c">
+        <div>
+          <p>寬庭為企業提供量身定制的專屬禮贈品服務，致力於透過獨具匠心的設計與精緻選品，助力企業深化與客戶及合作夥伴的關係。每份禮品皆完美契合品牌精神，彰顯尊榮品味，提升品牌價值，留下難以忘懷的品牌印象。</p>
+          <div class="btn-row"><a href="mailto:bespoke@kuansliving.com" class="btn btn-green">詢問定製方案 →</a></div>
+        </div>
+        <div>
+          <div class="card"><h3>精緻瓷器</h3><p>嚴選頂級瓷器，可客製品牌標誌或專屬設計，成為獨一無二的商務禮品。</p></div>
+          <div class="card" style="margin-top:16px"><h3>環保毛毯</h3><p>Seawool 牡蠣回收紗製成，兼顧環保與質感，是呼應 ESG 精神的最佳選擇。</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="content-block">
+      <h2>寬庭囍事</h2>
+      <p>「寬庭囍事」專注打造人生重要節慶的溫暖贈禮。精選囍字圍巾、香包、靠墊與家居配件，搭配專屬包裝與客製祝福，讓幸福與感謝在生活中綻放，成為值得珍藏的時刻。</p>
+      <div class="grid-2c" style="margin-top:28px">
+        <div class="img-frame"><img src="https://www.kuansliving.com/wp-content/uploads/2025/07/寬庭囍事43-1.jpg" alt="寬庭囍事" onerror="this.parentElement.style.background='#f5eee6'"></div>
+        <div class="img-frame"><img src="https://www.kuansliving.com/wp-content/uploads/2025/07/寬庭囍事43-2.jpg" alt="寬庭囍事" onerror="this.parentElement.style.background='#f5eee6'"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+<footer id="footer">
+  <div class="container">
+        <div class="footer-top">
+      <div>
+        <div class="footer-logo">KUAN'S LIVING</div>
+        <div class="footer-tag">Where Eastern Mastery<br>Meets Western Refinement.<br><br>寬庭美學股份有限公司<br>Est. 1991 · Taipei &amp; Milano</div>
+      </div>
+      <div class="footer-nav">
+        <a href="about.html">關於寬庭</a>
+        <a href="warehouse.html">體驗空間</a>
+        <a href="stores.html">服務據點</a>
+      </div>
+      <div></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 KUAN'S LIVING 寬庭美學股份有限公司 · All Rights Reserved</p>
+      <div class="footer-soc">
+        <a href="https://www.facebook.com/kuansliving/" target="_blank">Facebook</a>
+        <a href="https://kuans.co/WDDI9" target="_blank">Instagram</a>
+        <a href="https://kuans.co/QBei1" target="_blank">LINE</a>
+        <a href="https://kuans.co/AMgzq" target="_blank">立即購物</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+// ── Mobile menu ──────────────────────────────────────────────
+function toggleMenu() {
+  var menu = document.getElementById('mobile-menu');
+  if (menu) menu.classList.toggle('open');
+}
+function toggleMobileItem(header) {
+  var item = header.parentElement;
+  var wasOpen = item.classList.contains('open');
+  var all = document.querySelectorAll('.mobile-item');
+  for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
+  if (!wasOpen) item.classList.add('open');
+}
+
+</script>
+</body>
+</html>
