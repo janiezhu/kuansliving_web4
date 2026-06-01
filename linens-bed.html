@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>浴室系列 | KUAN'S LIVING 寬庭美學</title>
+<title>臥室系列 | KUAN'S LIVING 寬庭美學</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -72,7 +72,7 @@ img{display:block;width:100%;object-fit:cover}
 .img-frame{overflow:hidden;height:400px}
 .img-frame img{height:100%;transition:transform .7s var(--ease)}
 .img-frame:hover img{transform:scale(1.03)}
-.section-divider{height:1px;background:var(--mist);margin:60px 0}
+.section-divider{height:1px;background:var(--mist);margin:60px 0 80px}
 .quote-block{border-left:2px solid var(--accent);padding:20px 28px;background:var(--cream);margin:32px 0}
 .quote-block p{font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--dark);font-style:italic}
 /* ── BTN ── */
@@ -233,175 +233,75 @@ img{display:block;width:100%;object-fit:cover}
 }
 #mobile-menu .mobile-sub a:hover { color: var(--accent, #C9A96E) !important; }
 
-/* ── BATH PRODUCT SLIDER ── */
-.bath-slider-section {
-  background: #ffffff;
-  padding: 0 0 80px;
+
+/* ── Bed Slider（共通） ── */
+.bed-left-slider,
+.bed-right-slider {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  background: #e8e0d8;
+  min-width: 0;
+}
+.bed-left-slider .bed-slider-track,
+.bed-right-slider .bed-slider-track {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(.25,.46,.45,.94);
+  will-change: transform;
+}
+.bed-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
-.bath-slider-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 0;
-  padding-top: 12px;
+.bed-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
-.bath-slider-nav {
-  display: flex;
-  gap: 12px;
-  padding-bottom: 6px;
-  flex-shrink: 0;
-}
-.bath-nav-btn {
-  width: 50px;
-  height: 50px;
+.bed-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.18);
-  background: transparent;
-  color: var(--dark);
-  font-size: 18px;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.28s ease;
-  font-family: var(--font-en);
-  line-height: 1;
+  transition: background 0.25s;
+  z-index: 10;
 }
-.bath-nav-btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-.bath-slider-wrap { overflow: hidden; position: relative; margin-top: 20px; }
-.bath-slider-track {
-  display: flex;
-  transition: transform 0.58s cubic-bezier(.25,.46,.45,.94);
-  will-change: transform;
-}
-.bath-card {
-  min-width: 100%;
-  display: grid;
-  grid-template-columns: 44fr 56fr;
-  height: 430px;
-}
-.bath-card-img {
-  overflow: hidden;
-  height: 100%;
-  background: #1a1a1a;
-}
-.bath-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.9s cubic-bezier(.25,.46,.45,.94);
-  display: block;
-}
-.bath-card:hover .bath-card-img img { transform: scale(1.05); }
-.bath-card-body {
-  padding: 56px 64px 56px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.bath-card-body::after {
-  content: '';
+.bed-arrow:hover { background: rgba(255,255,255,0.5); }
+.bed-arrow-prev { left: 14px; }
+.bed-arrow-next { right: 14px; }
+.bed-counter {
   position: absolute;
-  top: -40%; right: -20%;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: transparent;
-  pointer-events: none;
-}
-.bath-cat {
-  font-family: var(--font-en);
-  font-size: 12pt;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: block;
-  margin-bottom: 28px;
-}
-.bath-quote-mark {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 4.5rem;
-  color: var(--accent);
-  opacity: 0.25;
-  line-height: 0.6;
-  display: block;
-  margin-bottom: 20px;
-}
-.bath-quote {
-  font-family: var(--font-zh);
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--dark);
-  margin-bottom: 36px;
-  position: relative;
-  z-index: 1;
-}
-.bath-divider {
-  width: 32px;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0.5;
-  margin-bottom: 20px;
-}
-.bath-info { position: relative; z-index: 1; }
-.bath-name {
-  font-family: var(--font-en);
-  font-size: 12.5px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  display: block;
-  margin-bottom: 5px;
-}
-.bath-loc {
-  font-family: var(--font-en);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--stone);
-  display: block;
-}
-.bath-slide-counter {
-  position: absolute;
-  bottom: 48px;
-  right: 64px;
+  bottom: 14px;
+  right: 18px;
   font-family: var(--font-en);
   font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--stone);
-  z-index: 1;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.85);
+  z-index: 10;
 }
-.bath-slide-counter em {
-  font-style: normal;
-  color: var(--accent);
-  font-size: 15px;
-}
-@media(max-width: 900px) {
-  .bath-card {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-  .bath-card-img { height: 300px; }
-  .bath-card-body { padding: 40px 32px 48px; min-height: 360px; }
-  .bath-slide-counter { bottom: 20px; right: 32px; }
-  .bath-slider-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 36px;
-  }
-}
-@media(max-width: 500px) {
-  .bath-card-img { height: 240px; }
-  .bath-card-body { padding: 32px 24px 40px; }
-  .bath-quote { font-size: 0.95rem; }
+.bed-counter em { font-style: normal; color: #fff; }
+@media(max-width:900px) {
+  .bed-left-slider,
+  .bed-right-slider { height: 260px; }
+  .bed-block2 .bed-right-slider { order: -1; }
 }
 
 </style>
@@ -430,8 +330,8 @@ img{display:block;width:100%;object-fit:cover}
           <li><a href="linens-bed.html">臥室系列</a></li>
           <li><a href="linens-bath.html">浴室系列</a></li>
           <li><a href="select-textile-accessories.html">織品配件</a></li>
-          <li><a href="select-fragrance.html">居家香氛</a></li>
           <li><a href="select-ornamental-crafts.html">工藝裝飾</a></li>
+          <li><a href="select-fragrance.html">居家香氛</a></li>
         </ul>
       </li>
       <li class="nav-item">
@@ -484,8 +384,8 @@ img{display:block;width:100%;object-fit:cover}
       <a href="linens-bed.html" onclick="toggleMenu()">臥室系列</a>
       <a href="linens-bath.html" onclick="toggleMenu()">浴室系列</a>
       <a href="select-textile-accessories.html" onclick="toggleMenu()">織品配件</a>
-      <a href="select-fragrance.html" onclick="toggleMenu()">居家香氛</a>
       <a href="select-ornamental-crafts.html" onclick="toggleMenu()">工藝裝飾</a>
+      <a href="select-fragrance.html" onclick="toggleMenu()">居家香氛</a>
     </div>
   </div>
   <div class="mobile-item">
@@ -510,101 +410,62 @@ img{display:block;width:100%;object-fit:cover}
 <section class="page-hero white">
   <div class="container">
     <a href="index-website.html" class="breadcrumb">← 首頁 Home</a>
-    <span class="label-en">Bath Collection · 浴室</span>
-    <h1>極致織藝｜浴室</h1>
-    <p class="page-sub">Transform Your Bathroom Into a Personal Spa</p>
+    <span class="label-en">Exquisite Linens · 臥室</span>
+    <h1>極致織藝｜臥室</h1>
+    <p class="page-sub">Explore the Exquisite Ways of Bedroom Linens</p>
   </div>
 </section>
 <main class="page-main">
   <div class="container">
 
     <div class="content-block grid-2c">
-      <div class="img-frame"><img src="https://www.kuansliving.com/wp-content/uploads/2025/07/【寬庭】寬庭倉庫「白的一百種姿態」期間限定主題展區2-edited-scaled.jpg" alt="浴室系列" onerror="this.parentElement.style.background='#d4dde1'"></div>
+      <div class="bed-left-slider">
+        <div class="bed-slider-track" id="bedTrack">
+          <div class="bed-slide"><img src="jpg/linens-bed/01_linens-1-1024x552.jpg" alt="臥室系列 1" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+          <div class="bed-slide"><img src="jpg/linens-bed/02_KUN天籟400T-Percale(白繡白).jpg" alt="臥室系列 2" onerror="this.parentElement.style.background='#c8bdb0'"></div>
+          <div class="bed-slide"><img src="jpg/linens-bed/03_169_蕭邦.jpg" alt="臥室系列 3" onerror="this.parentElement.style.background='#bfb4a8'"></div>
+          <div class="bed-slide"><img src="jpg/linens-bed/04_KUN璀璨600T白.jpg" alt="臥室系列 4" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+          <div class="bed-slide"><img src="jpg/linens-bed/05_PUR舞影600T天使白.jpg" alt="臥室系列 5" onerror="this.parentElement.style.background='#c8bdb0'"></div>
+        </div>
+        <button class="bed-arrow bed-arrow-prev" onclick="bedSlide(-1)" aria-label="上一張">←</button>
+        <button class="bed-arrow bed-arrow-next" onclick="bedSlide(1)" aria-label="下一張">→</button>
+        <div class="bed-counter"><em id="bedCurrent">1</em> / 5</div>
+      </div>
       <div>
-        <h2>在家打造<br>專屬 SPA 體驗</h2>
-        <p>現代的浴室是日常中的靜心所，就如同自己的 SPA 空間。柔軟舒適的沐浴織品與盥洗逸品，讓每一間浴室都能成為專屬自己的療愈空間。</p>
-        <p>從極致柔軟的純棉沐浴巾、浴袍、到蓬鬆吸水的地墊、氣味溫潤的香氛與收納設計，每一項細節都在喚醒感官、釋放壓力。</p>
-        <div class="btn-row"><a href="https://shop.kuansliving.com/v2/official/SalePageCategory/323256?sortMode=PageView" target="_blank" class="btn btn-green">探索更多 →</a></div>
+        <h2>寢飾床品</h2>
+        <p>義大利國寶級手工結合精密科技，將博物館級典藏化為日常奢華寢飾。頂級訂製體驗 Bespoke 系列甄選 100% 義大利埃及 Giza 超長纖棉，以蕾絲、緹花與刺繡成就專屬睡眠美學。輕鬆日常護理 EASY CARE 設計支援機洗、低溫烘乾與熨燙，細膩工藝融入生活無負擔。</p>
+        <div class="btn-row"><a href="https://shop.kuansliving.com/v2/official/SalePageCategory/325692?sortMode=Sales" target="_blank" class="btn btn-green">探索更多 →</a></div>
       </div>
     </div>
 
 
   </div>
 </main>
-<section class="bath-slider-section">
-  <div class="container">
-    <div class="bath-slider-header">
-      <div class="bath-slider-nav">
-        <button class="bath-nav-btn" id="bathPrev" aria-label="上一張" onclick="bathSlide(-1)">←</button>
-        <button class="bath-nav-btn" id="bathNext" aria-label="下一張" onclick="bathSlide(1)">→</button>
-      </div>
+
+<div class="container">
+  <div class="section-divider"></div>
+  <div class="content-block grid-2c bed-block2">
+    <div>
+      <h2>寢被枕飾</h2>
+      <p>頂級羽絨被芯涵蓋冰島雁鴨絨被、歐洲大白鵝羽絨被與蠶絲夏被，對應四季需求，每夜皆有最適溫度。多元枕頭系列蓬鬆羽絨枕、功能支撐枕芯與記憶枕頭三大系列，貼合不同睡姿與曲線，全面守護頸部舒適。被枕同等哲學 寬庭主張被子與枕頭相輔相成，以完整寢具系統成就每一夜深層好眠。</p>
+      <div class="btn-row"><a href="https://shop.kuansliving.com/v2/official/SalePageCategory/377285?sortMode=Sales" target="_blank" class="btn btn-green">探索更多 →</a></div>
     </div>
-    <div class="bath-slider-wrap">
-      <div class="bath-slider-track" id="bathTrack" style="transform: translateX(0%);">
-        <!-- Card 1 · 浴袍 -->
-        <div class="bath-card">
-          <div class="bath-card-img"><img src="jpg/linens-bath/01_Bathrobe 浴袍.jpg" alt="浴袍" onerror="this.parentElement.style.background='#C8C0B8';this.style.display='none'"></div>
-          <div class="bath-card-body" style="background:#F8F6F2;">
-            <span class="bath-cat">Bathrobe · 浴袍</span>
-            <span class="bath-quote-mark">"</span>
-            <p class="bath-quote">披上那一刻，所有疲憊都悄然消散。<br>五星級酒店同等規格，讓奢華的沐浴體驗在家中每日重現。</p>
-            <div class="bath-divider"></div>
-            <div class="bath-info">
-              <span class="bath-name">Hotel Collection Bathrobe</span>
-              <span class="bath-loc">Premium Egyptian Cotton · 100%</span>
-            </div>
-            <div class="bath-slide-counter" style="opacity: 1;"><em id="bathCurrent">1</em> / <span id="bathTotal">4</span></div>
-          </div>
-        </div>
-        <!-- Card 2 · 毛巾系列 -->
-        <div class="bath-card">
-          <div class="bath-card-img"><img src="jpg/linens-bath/02_Towels 毛巾系列.jpg" alt="毛巾系列" onerror="this.parentElement.style.background='#BFC8CE';this.style.display='none'"></div>
-          <div class="bath-card-body" style="background:#F8F6F2;">
-            <span class="bath-cat">Towels · 毛巾系列</span>
-            <span class="bath-quote-mark">"</span>
-            <p class="bath-quote">每一條毛巾都是對肌膚的溫柔承諾。<br>細密織法鎖住水分，觸感如雲朵般輕盈，讓沐浴後的每個時刻都充滿儀式感。</p>
-            <div class="bath-divider"></div>
-            <div class="bath-info">
-              <span class="bath-name">Signature Towel Collection</span>
-              <span class="bath-loc">Zero-Twist Long-Staple Cotton</span>
-            </div>
-            <div class="bath-slide-counter" style="opacity: 0;"><em>2</em> / 4</div>
-          </div>
-        </div>
-        <!-- Card 3 · 地墊 -->
-        <div class="bath-card">
-          <div class="bath-card-img"><img src="jpg/linens-bath/03_Bath Mat 地墊.jpg" alt="地墊" onerror="this.parentElement.style.background='#C8C0B8';this.style.display='none'"></div>
-          <div class="bath-card-body" style="background:#F8F6F2;">
-            <span class="bath-cat">Bath Mat · 地墊</span>
-            <span class="bath-quote-mark">"</span>
-            <p class="bath-quote">踏出浴缸的那一刻，腳下柔軟如棉雲。<br>蓬鬆吸水的地墊讓每次沐浴後的落腳，都成為一種細膩的生活禮遇。</p>
-            <div class="bath-divider"></div>
-            <div class="bath-info">
-              <span class="bath-name">Cloud-Soft Bath Mat</span>
-              <span class="bath-loc">High-Pile Microfiber · Anti-Slip</span>
-            </div>
-            <div class="bath-slide-counter" style="opacity: 0;"><em>3</em> / 4</div>
-          </div>
-        </div>
-        <!-- Card 4 · 居家香氛 -->
-        <div class="bath-card">
-          <div class="bath-card-img"><img src="jpg/linens-bath/04_Accessories 浴室配件.jpg" alt="浴室配件" onerror="this.parentElement.style.background='#BFC8CE';this.style.display='none'"></div>
-          <div class="bath-card-body" style="background:#F8F6F2;">
-            <span class="bath-cat">Accessories · 浴室配件</span>
-            <span class="bath-quote-mark">"</span>
-            <p class="bath-quote">精選收納設計與香氛擺件，讓浴室空間美感延伸至每一個細節。</p>
-            <div class="bath-divider"></div>
-            <div class="bath-info">
-              <span class="bath-name"></span>
-              <span class="bath-loc"></span>
-            </div>
-            <div class="bath-slide-counter" style="opacity: 0;"><em>4</em> / 4</div>
-          </div>
-        </div>
-      </div><!-- /bath-slider-track -->
-    </div><!-- /bath-slider-wrap -->
+    <div class="bed-right-slider">
+      <div class="bed-slider-track" id="bedTrack2">
+        <div class="bed-slide"><img src="jpg/linens-bed/06_20160129-DSCF0009-scaled.jpg" alt="寢被枕飾 1" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+        <div class="bed-slide"><img src="jpg/linens-bed/07_Comforter1.jpg" alt="寢被枕飾 2" onerror="this.parentElement.style.background='#c8bdb0'"></div>
+        <div class="bed-slide"><img src="jpg/linens-bed/08_TR典鑽-白鵝絨被.jpg" alt="寢被枕飾 3" onerror="this.parentElement.style.background='#bfb4a8'"></div>
+        <div class="bed-slide"><img src="jpg/linens-bed/09_LS-純長纖-蠶絲冬被.jpg" alt="寢被枕飾 4" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+        <div class="bed-slide"><img src="jpg/linens-bed/10_TR鉑鑽-白鵝絨被s-scaled.jpg" alt="寢被枕飾 5" onerror="this.parentElement.style.background='#c8bdb0'"></div>
+        <div class="bed-slide"><img src="jpg/linens-bed/11_野生雁鴨絨.jpg" alt="寢被枕飾 6" onerror="this.parentElement.style.background='#bfb4a8'"></div>
+      </div>
+      <button class="bed-arrow bed-arrow-prev" onclick="bedSlide2(-1)" aria-label="上一張">←</button>
+      <button class="bed-arrow bed-arrow-next" onclick="bedSlide2(1)" aria-label="下一張">→</button>
+      <div class="bed-counter"><em id="bedCurrent2">1</em> / 6</div>
+    </div>
   </div>
-</section>
+</div>
+
 
 <footer id="footer">
   <div class="container">
@@ -632,46 +493,6 @@ img{display:block;width:100%;object-fit:cover}
   </div>
 </footer>
 <script>
-// ── Bath Product Slider ──────────────────────────────────────
-(function() {
-  var idx = 0;
-  var total = 4;
-  var track = null;
-
-  function getTrack() {
-    if (!track) track = document.getElementById('bathTrack');
-    return track;
-  }
-
-  function updateSlider() {
-    var t = getTrack();
-    if (!t) return;
-    t.style.transform = 'translateX(-' + (idx * 100) + '%)';
-    // update all counter "em" elements
-    var cards = t.querySelectorAll('.bath-card');
-    cards.forEach(function(card, i) {
-      var em = card.querySelector('.bath-slide-counter em');
-      if (em) em.parentElement.style.opacity = (i === idx) ? '1' : '0';
-    });
-  }
-
-  window.bathSlide = function(dir) {
-    idx = (idx + dir + total) % total;
-    updateSlider();
-  };
-
-  // Swipe support
-  document.addEventListener('DOMContentLoaded', function() {
-    var wrap = document.querySelector('.bath-slider-wrap');
-    if (!wrap) return;
-    var startX = 0;
-    wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-    wrap.addEventListener('touchend', function(e) {
-      var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 50) window.bathSlide(dx < 0 ? 1 : -1);
-    }, { passive: true });
-  });
-})();
 
 // ── Mobile menu ──────────────────────────────────────────────
 function toggleMenu() {
@@ -687,5 +508,60 @@ function toggleMobileItem(header) {
 }
 
 </script>
+
+<script>
+
+// ── Bed Right Slider ──
+(function() {
+  var idx = 0, total = 6;
+  function update() {
+    var t = document.getElementById('bedTrack2');
+    if (!t) return;
+    t.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var cur = document.getElementById('bedCurrent2');
+    if (cur) cur.textContent = idx + 1;
+  }
+  window.bedSlide2 = function(dir) {
+    idx = (idx + dir + total) % total;
+    update();
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.querySelector('.bed-right-slider');
+    if (!el) return;
+    var sx = 0;
+    el.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+    el.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) window.bedSlide2(dx < 0 ? 1 : -1);
+    }, {passive:true});
+  });
+})();
+
+// ── Bed Left Slider ──
+(function() {
+  var idx = 0, total = 5;
+  function update() {
+    var t = document.getElementById('bedTrack');
+    if (!t) return;
+    t.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var cur = document.getElementById('bedCurrent');
+    if (cur) cur.textContent = idx + 1;
+  }
+  window.bedSlide = function(dir) {
+    idx = (idx + dir + total) % total;
+    update();
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.querySelector('.bed-left-slider');
+    if (!el) return;
+    var sx = 0;
+    el.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+    el.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) window.bedSlide(dx < 0 ? 1 : -1);
+    }, {passive:true});
+  });
+})();
+</script>
 </body>
-</html>                                                                             
+</html>

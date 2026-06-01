@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>軟裝設計服務 | KUAN'S LIVING 寬庭美學</title>
+<title>織品配件 | KUAN'S LIVING 寬庭美學</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -53,7 +53,7 @@ img{display:block;width:100%;object-fit:cover}
 .page-sub{font-family:var(--font-en);font-style:italic;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:300;color:var(--stone);letter-spacing:.04em}
 .page-hero.dark .page-sub{color:rgba(255,255,255,0.4)}
 /* ── CONTENT ── */
-.page-main{padding:80px 0 120px}
+.page-main{padding:80px 0 20px}
 .content-block{margin-bottom:80px}
 .content-block h2{font-weight:300;font-size:clamp(1.5rem,2.5vw,2.2rem);margin-bottom:20px;color:var(--dark)}
 .content-block p{font-size:15px;line-height:2;color:var(--mid);margin-bottom:16px}
@@ -70,9 +70,10 @@ img{display:block;width:100%;object-fit:cover}
 .info-lbl{font-family:var(--font-en);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);min-width:56px;padding-top:2px}
 .info-val{font-size:13.5px;color:var(--mid);line-height:1.7}
 .img-frame{overflow:hidden;height:400px}
-.img-frame img{height:100%;transition:transform .7s var(--ease)}
+.img-frame img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s var(--ease)}
+@media(max-width:900px){.img-frame{height:280px}.img-frame img{width:100%;height:100%;object-fit:cover;object-position:center}}
 .img-frame:hover img{transform:scale(1.03)}
-.section-divider{height:1px;background:var(--mist);margin:60px 0}
+.section-divider{height:1px;background:var(--mist);margin:60px 0 80px}
 .quote-block{border-left:2px solid var(--accent);padding:20px 28px;background:var(--cream);margin:32px 0}
 .quote-block p{font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--dark);font-style:italic}
 /* ── BTN ── */
@@ -107,132 +108,122 @@ img{display:block;width:100%;object-fit:cover}
 .footer-soc{display:flex;gap:14px}
 .footer-soc a{font-family:var(--font-en);font-size:9.5px;letter-spacing:.08em;color:rgba(255,255,255,0.35);transition:color .3s}
 .footer-soc a:hover{color:#fff}
-
-/* ── Main nav triggers: hover-only, not clickable ── */
-.nav-main > li > a[href="javascript:void(0)"],
-.nav-item > a[href="javascript:void(0)"] {
-  cursor: default;
-  user-select: none;
-}
-.nav-main > li > a[href="javascript:void(0)"]::after,
-.nav-item > a[href="javascript:void(0)"]::after { display: none; }
-
-/* ── Nav direct links (購物網站 / 線上雜誌) ── */
-.nav-main > li.nav-direct {
-  position: relative;
-}
-.nav-main > li.nav-direct > a {
-  cursor: pointer;
-  font-family: var(--font-zh);
-  font-size: 13.5px;
-  color: var(--charcoal);
-  height: 72px;
-  display: flex;
-  align-items: center;
-  padding: 0 18px;
-  white-space: nowrap;
-  transition: color var(--trans);
-}
-.nav-main > li.nav-direct > a:hover { color: var(--accent); }
-.nav-item.nav-direct > a {
-  cursor: pointer;
-  padding: 0 16px;
-  white-space: nowrap;
-}
-.nav-item.nav-direct > a:hover { color: var(--accent); }
-
+/* ── Main nav triggers ── */
+.nav-main > li > a[href="javascript:void(0)"],.nav-item > a[href="javascript:void(0)"]{cursor:default;user-select:none}
+.nav-main > li > a[href="javascript:void(0)"]::after,.nav-item > a[href="javascript:void(0)"]::after{display:none}
+/* ── Nav direct links ── */
+.nav-main > li.nav-direct{position:relative}
+.nav-main > li.nav-direct > a{cursor:pointer;font-family:var(--font-zh);font-size:13.5px;color:var(--charcoal);height:72px;display:flex;align-items:center;padding:0 18px;white-space:nowrap;transition:color var(--trans)}
+.nav-main > li.nav-direct > a:hover{color:var(--accent)}
+.nav-item.nav-direct > a{cursor:pointer;padding:0 16px;white-space:nowrap}
+.nav-item.nav-direct > a:hover{color:var(--accent)}
 /* ── Mobile accordion menu ── */
-.mobile-item {
-  border-bottom: 1px solid var(--light);
+.mobile-item{border-bottom:1px solid var(--light)}
+.mobile-item-header{display:flex;justify-content:space-between;align-items:center;font-size:22px;font-weight:300;color:var(--charcoal);padding:16px 0;cursor:pointer;transition:color var(--trans);user-select:none}
+.mobile-item-header:hover{color:var(--accent)}
+.mobile-arrow{font-size:14px;color:var(--stone);transition:transform 0.3s ease;margin-left:8px}
+.mobile-item.open .mobile-arrow{transform:rotate(180deg)}
+.mobile-sub{display:none;flex-direction:column;padding:4px 0 14px 16px;gap:2px}
+.mobile-item.open .mobile-sub{display:flex}
+.mobile-sub a{font-family:var(--font-zh);font-size:14px;color:var(--mid);padding:10px 0;border-bottom:none !important;display:block;transition:color 0.2s ease}
+.mobile-sub a:hover{color:var(--accent)}
+#mobile-menu .mobile-sub a{font-size:14px !important;font-weight:400 !important;color:var(--mid) !important;padding:10px 0 !important;border-bottom:none !important}
+#mobile-menu .mobile-sub a:hover{color:var(--accent) !important}
+.mobile-direct{display:block;font-family:var(--font-zh);font-size:22px;font-weight:300;color:var(--charcoal);padding:16px 0;border-bottom:1px solid var(--light);transition:color var(--trans)}
+.mobile-direct:hover{color:var(--accent)}
+/* ── Hamburger + Mobile menu ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--dark);transition:all 0.3s ease}
+@media(max-width:1024px){.nav-main{display:none}.hamburger{display:flex}}
+#mobile-menu{position:fixed;top:72px;left:0;right:0;bottom:0;background:var(--white,#fff);z-index:999;padding:28px 24px;transform:translateX(100%);transition:transform 0.35s ease;display:flex;flex-direction:column;gap:0;overflow-y:auto}
+#mobile-menu.open{transform:translateX(0)}
+#mobile-menu > a{font-size:22px;font-weight:300;color:var(--charcoal,#2A2A2A);padding:14px 0;border-bottom:1px solid var(--light,#F2F2F0);transition:color 0.3s ease;display:block}
+#mobile-menu > a:hover{color:var(--accent,#C9A96E)}
+#mobile-menu .mobile-sub a{font-size:14px !important;font-weight:400 !important;color:var(--mid,#4A4A4A) !important;padding:10px 0 !important;border-bottom:none !important;display:block}
+#mobile-menu .mobile-sub a:hover{color:var(--accent,#C9A96E) !important}
+
+/* ── Bed Slider（共通） ── */
+.bed-left-slider {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  background: #e8e0d8;
+  min-width: 0;
 }
-.mobile-item-header {
+.bed-left-slider .bed-slider-track {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 22px;
-  font-weight: 300;
-  color: var(--charcoal);
-  padding: 16px 0;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(.25,.46,.45,.94);
+  will-change: transform;
+}
+.bed-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.bed-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.bed-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 16px;
   cursor: pointer;
-  transition: color var(--trans);
-  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s;
+  z-index: 10;
 }
-.mobile-item-header:hover { color: var(--accent); }
-.mobile-arrow {
-  font-size: 14px;
-  color: var(--stone);
-  transition: transform 0.3s ease;
-  margin-left: 8px;
+.bed-arrow:hover { background: rgba(255,255,255,0.5); }
+.bed-arrow-prev { left: 14px; }
+.bed-arrow-next { right: 14px; }
+.bed-counter {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.85);
+  z-index: 10;
 }
-.mobile-item.open .mobile-arrow { transform: rotate(180deg); }
-.mobile-sub {
-  display: none;
-  flex-direction: column;
-  padding: 4px 0 14px 16px;
-  gap: 2px;
+.bed-counter em { font-style: normal; color: #fff; }
+.bed-right-slider {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  background: #e8e0d8;
+  min-width: 0;
 }
-.mobile-item.open .mobile-sub { display: flex; }
-.mobile-sub a {
-  font-family: var(--font-zh);
-  font-size: 14px;
-  color: var(--mid);
-  padding: 10px 0;
-  border-bottom: none !important;
-  display: block;
-  transition: color 0.2s ease;
+.bed-right-slider .bed-slider-track {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(.25,.46,.45,.94);
+  will-change: transform;
 }
-.mobile-sub a:hover { color: var(--accent); }
-#mobile-menu .mobile-sub a {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-  color: var(--mid) !important;
-  padding: 10px 0 !important;
-  border-bottom: none !important;
+@media(max-width:900px) {
+  .bed-left-slider,
+  .bed-right-slider { height: 260px; }
+  .bed-block2 .bed-right-slider { order: -1; }
 }
-#mobile-menu .mobile-sub a:hover { color: var(--accent) !important; }
-.mobile-direct {
-  display: block;
-  font-family: var(--font-zh);
-  font-size: 22px;
-  font-weight: 300;
-  color: var(--charcoal);
-  padding: 16px 0;
-  border-bottom: 1px solid var(--light);
-  transition: color var(--trans);
-}
-.mobile-direct:hover { color: var(--accent); }
-
-/* ── Hamburger + Mobile menu (sub-pages) ── */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--dark); transition: all 0.3s ease; }
-@media(max-width:1024px) {
-  .nav-main { display: none; }
-  .hamburger { display: flex; }
-}
-#mobile-menu {
-  position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
-  background: var(--white, #fff); z-index: 999;
-  padding: 28px 24px;
-  transform: translateX(100%);
-  transition: transform 0.35s ease;
-  display: flex; flex-direction: column; gap: 0;
-  overflow-y: auto;
-}
-#mobile-menu.open { transform: translateX(0); }
-#mobile-menu > a {
-  font-size: 22px; font-weight: 300; color: var(--charcoal, #2A2A2A);
-  padding: 14px 0; border-bottom: 1px solid var(--light, #F2F2F0);
-  transition: color 0.3s ease; display: block;
-}
-#mobile-menu > a:hover { color: var(--accent, #C9A96E); }
-#mobile-menu .mobile-sub a {
-  font-size: 14px !important; font-weight: 400 !important;
-  color: var(--mid, #4A4A4A) !important;
-  padding: 10px 0 !important; border-bottom: none !important;
-  display: block;
-}
-#mobile-menu .mobile-sub a:hover { color: var(--accent, #C9A96E) !important; }
-
 </style>
 </head>
 <body>
@@ -256,11 +247,12 @@ img{display:block;width:100%;object-fit:cover}
       <li class="nav-item">
         <a href="javascript:void(0)">寢飾選品</a>
         <ul class="dropdown">
-          <li><a href="linens-bedroom.html">臥室系列</a></li>
+          <li><a href="linens-bed.html">臥室系列</a></li>
           <li><a href="linens-bath.html">浴室系列</a></li>
+          <li><a href="textile-accessories.html">織品配件1</a></li>
           <li><a href="select-textile-accessories.html">織品配件</a></li>
-          <li><a href="select-ornamental-crafts.html">工藝裝飾</a></li>
           <li><a href="select-fragrance.html">居家香氛</a></li>
+          <li><a href="select-ornamental-crafts.html">工藝裝飾</a></li>
         </ul>
       </li>
       <li class="nav-item">
@@ -336,41 +328,68 @@ img{display:block;width:100%;object-fit:cover}
     <a href="#" style="font-family:var(--font-en);font-size:13px;color:var(--stone);">簡</a>
   </div>
 </div>
+
 <section class="page-hero cream">
   <div class="container">
     <a href="index-website.html" class="breadcrumb">← 首頁 Home</a>
-    <span class="label-en">Interior Styling · 軟裝</span>
-    <h1>軟裝設計服務</h1>
-    <p class="page-sub">Where Functionality Meets Refined Aesthetics</p>
+    <span class="label-en">Exquisite Linens · 織品配件</span>
+    <h1>極致織藝｜織品配件</h1>
+    <p class="page-sub">Refined Textile Accessories for Everyday Living</p>
   </div>
 </section>
+
 <main class="page-main">
   <div class="container">
 
     <div class="content-block grid-2c">
-      <div>
-        <h2>從空間到生活<br>量身打造的美學解決方案</h2>
-        <p>寬庭軟裝服務專注於頂級私宅與商業空間的策畫，憑藉深厚的國際實務經驗，為每一個空間量身打造獨一無二的風格語彙。我們兼顧功能、比例與美學的精準平衡，無論私人住宅或商業場所，都能回應生活本質，並彰顯使用者的內在品味及需求。</p>
-        <div class="btn-row"><a href="mailto:bespoke@kuansliving.com" class="btn btn-green">諮詢服務 →</a></div>
+      <div class="bed-left-slider">
+        <div class="bed-slider-track" id="bedTrack">
+          <div class="bed-slide"><img src="jpg/select-textile-accessories/01_Accessories-4.jpg" alt="織品配件 1" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+          <div class="bed-slide"><img src="jpg/select-textile-accessories/02_Accessories-15.jpg" alt="織品配件 2" onerror="this.parentElement.style.background='#c8bdb0'"></div>
+          <div class="bed-slide"><img src="jpg/select-textile-accessories/03_Accessories-14.jpg" alt="織品配件 3" onerror="this.parentElement.style.background='#bfb4a8'"></div>
+          <div class="bed-slide"><img src="jpg/select-textile-accessories/04_Accessories-8.jpg" alt="織品配件 4" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+        </div>
+        <button class="bed-arrow bed-arrow-prev" onclick="bedSlide(-1)" aria-label="上一張">←</button>
+        <button class="bed-arrow bed-arrow-next" onclick="bedSlide(1)" aria-label="下一張">→</button>
+        <div class="bed-counter"><em id="bedCurrent">1</em> / 4</div>
       </div>
-      <div class="img-frame"><img src="https://www.kuansliving.com/wp-content/uploads/2025/05/services-8.jpg" alt="軟裝服務" onerror="this.parentElement.style.background='#e8e0d8'"></div>
-    </div>
-    <div class="section-divider"></div>
-    <div class="content-block">
-      <h2>服務項目</h2>
-      <div class="grid-2c">
-        <div class="card"><span class="en">01 Consulting</span><h3>室內設計諮詢</h3><p>提供專屬的美學造型，涵蓋色彩搭配、材料選擇及空間規劃，確保空間美觀且實用。</p></div>
-        <div class="card"><span class="en">02 Styling</span><h3>家居美學設計與佈置</h3><p>包含寢飾、家具、地毯、藝術品及裝飾品的選擇與擺放，呈現最極致的生活美學。</p></div>
-        <div class="card"><span class="en">03 Bespoke</span><h3>訂製家具與配件</h3><p>根據需求和空間量身訂製家具及配件，確保與整體設計完美契合。</p></div>
-        <div class="card"><span class="en">04 Décor</span><h3>裝飾與美化</h3><p>精選並佈置裝飾品，為空間增添獨特魅力與氛圍。</p></div>
+      <div>
+        <h2>披毯靠墊</h2>
+        <p>當室內設計的基調與空間層次確立後，真正體現私人品味與舒適的，是那些兼具功能與美感、低調卻精緻的家飾品。</p>
+        <p>寬庭甄選抱枕、靠墊、披毯以及各類家飾與藝術品，以優選材質和傳承工藝為基礎，注重色彩與觸感的自然協調，讓空間語言延伸至每一個細節，自然融入日常。</p>
+        <div class="btn-row"><a href="https://shop.kuansliving.com" target="_blank" class="btn btn-green">探索更多 →</a></div>
       </div>
     </div>
 
   </div>
 </main>
+
+<div class="container">
+  <div class="section-divider"></div>
+  <div class="content-block grid-2c bed-block2">
+    <div>
+      <h2>居家服/手工拖鞋</h2>
+      <p>在現代居住環境中，生活方式不止於空間，更應貼近肌膚的每一寸感受。攜手義大利與西班牙百年手工工坊，呈現兼具美感與機能的居家配飾系列。</p>
+      <p>從歷經 25 道工序手工打造的柔軟居家鞋，到甄選純棉、蕾絲與喀什米爾羊毛等考究材質、於義大利等地製造的居家服。無論簡約中性或感性設計，皆能自然銜接居家的舒適與得體。這不僅是穿著，更是一種對日常的講究。親膚透氣的面料，在實用之上保留分寸與格調，讓生活回歸從容。</p>
+      <div class="btn-row"><a href="https://shop.kuansliving.com" target="_blank" class="btn btn-green">探索更多 →</a></div>
+    </div>
+    <div class="bed-right-slider">
+      <div class="bed-slider-track" id="bedTrack2">
+        <div class="bed-slide"><img src="jpg/select-textile-accessories/05_Accessories-6.jpg" alt="居家服 1" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+        <div class="bed-slide"><img src="jpg/select-textile-accessories/06_Accessories-7.jpg" alt="居家服 2" onerror="this.parentElement.style.background='#c8bdb0'"></div>
+        <div class="bed-slide"><img src="jpg/select-textile-accessories/07_Accessories-2.jpg" alt="居家服 3" onerror="this.parentElement.style.background='#bfb4a8'"></div>
+        <div class="bed-slide"><img src="jpg/select-textile-accessories/08_Accessories-1.jpg" alt="居家服 4" onerror="this.parentElement.style.background='#d4c8bc'"></div>
+      </div>
+      <button class="bed-arrow bed-arrow-prev" onclick="bedSlide2(-1)" aria-label="上一張">←</button>
+      <button class="bed-arrow bed-arrow-next" onclick="bedSlide2(1)" aria-label="下一張">→</button>
+      <div class="bed-counter"><em id="bedCurrent2">1</em> / 4</div>
+    </div>
+  </div>
+</div>
+
 <footer id="footer">
   <div class="container">
-        <div class="footer-top">
+    <div class="footer-top">
       <div>
         <div class="footer-logo">KUAN'S LIVING</div>
         <div class="footer-tag">Where Eastern Mastery<br>Meets Western Refinement.<br><br>寬庭美學股份有限公司<br>Est. 1991 · Taipei &amp; Milano</div>
@@ -393,8 +412,8 @@ img{display:block;width:100%;object-fit:cover}
     </div>
   </div>
 </footer>
+
 <script>
-// ── Mobile menu ──────────────────────────────────────────────
 function toggleMenu() {
   var menu = document.getElementById('mobile-menu');
   if (menu) menu.classList.toggle('open');
@@ -406,7 +425,63 @@ function toggleMobileItem(header) {
   for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
   if (!wasOpen) item.classList.add('open');
 }
+</script>
 
+<script>
+// ── Left Slider ──
+(function() {
+  var idx = 0, total = 4;
+  function update() {
+    var t = document.getElementById('bedTrack');
+    if (!t) return;
+    t.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var cur = document.getElementById('bedCurrent');
+    if (cur) cur.textContent = idx + 1;
+  }
+  window.bedSlide = function(dir) {
+    idx = (idx + dir + total) % total;
+    update();
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.querySelector('.bed-left-slider');
+    if (!el) return;
+    var sx = 0;
+    el.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+    el.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) window.bedSlide(dx < 0 ? 1 : -1);
+    }, {passive:true});
+  });
+})();
+</script>
+
+<script>
+// ── Right Slider ──
+(function() {
+  var idx = 0, total = 4;
+  function update() {
+    var t = document.getElementById('bedTrack2');
+    if (!t) return;
+    t.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var cur = document.getElementById('bedCurrent2');
+    if (cur) cur.textContent = idx + 1;
+  }
+  window.bedSlide2 = function(dir) {
+    idx = (idx + dir + total) % total;
+    update();
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.querySelector('.bed-right-slider');
+    if (!el) return;
+    var sx = 0;
+    el.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+    el.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) window.bedSlide2(dx < 0 ? 1 : -1);
+    }, {passive:true});
+  });
+})();
 </script>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

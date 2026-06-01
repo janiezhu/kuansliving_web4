@@ -74,7 +74,8 @@ a { text-decoration: none; color: inherit; }
   background: rgba(0,0,0,0.48);
   border: none;
   border-radius: 999px;
-  padding: 7px 18px;
+  height: 44px;
+  padding: 0 18px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: color 0.3s ease, background 0.3s ease;
@@ -319,6 +320,7 @@ a { text-decoration: none; color: inherit; }
   padding: 0 48px; width: 100%;
   text-align: center;
   display: flex; flex-direction: column; align-items: center;
+  transform: translateY(20px);
 }
 /* Badge Pill — Digitize 風格 */
 .hero-badge {
@@ -327,8 +329,8 @@ a { text-decoration: none; color: inherit; }
   background: transparent;
   border: none;
   border-radius: 999px;
-  padding: 6px 18px 6px 6px;
-  margin-bottom: 48px;
+  padding: 6px 0;
+  margin-bottom: 32px;
   opacity: 0; transform: translateY(20px);
   animation: fadeUp 1s var(--ease) 0.2s forwards;
 }
@@ -345,7 +347,8 @@ a { text-decoration: none; color: inherit; }
 .hero-badge-av:nth-child(2) { background: var(--sand); margin-left: -7px; }
 .hero-badge-label {
   font-family: var(--font-en); font-size: 11.5px; font-weight: 400;
-  color: rgba(255,255,255,0.72); letter-spacing: .05em;
+  color: #C9A96E; letter-spacing: .05em;
+  text-align: center;
 }
 .hero-eyebrow { display: none; }
 /* 主標題容器 */
@@ -362,14 +365,13 @@ a { text-decoration: none; color: inherit; }
   max-width: min(860px, 85vw);
   height: auto;
   margin: 0 auto 20px;
-  filter: brightness(0) invert(1);
   object-fit: contain;
 }
 /* 英文副標 */
 .hero-en {
   font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 300;
-  font-size: clamp(0.85rem, 1.45vw, 1.05rem);
-  color: rgba(255,255,255,0.55); letter-spacing: .08em;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  color: #ffffff; letter-spacing: .06em;
   display: block; text-align: center;
   margin-top: 0;
   opacity: 0; transform: translateY(20px);
@@ -379,8 +381,8 @@ a { text-decoration: none; color: inherit; }
 .hero-title-zh {
   display: block;
   font-family: var(--font-display); font-weight: normal;
-  font-size: clamp(0.85rem, 1.3vw, 1rem);
-  color: var(--gold);
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  color: #8e8a7e;
   letter-spacing: 0.15em;
   text-align: center;
   white-space: nowrap;
@@ -394,10 +396,11 @@ a { text-decoration: none; color: inherit; }
   .hero-en { font-size: clamp(0.8rem, 3.2vw, 0.95rem); }
 }
 
-/* CTA 按鈕區 — 置中 */
+/* CTA 按鈕區 — 靠左對齊 LOGO */
 .hero-cta {
   display: flex; gap: 16px; flex-wrap: wrap; margin-top: 52px;
   justify-content: center;
+  width: 100%;
   opacity: 0; transform: translateY(20px);
   animation: fadeUp 1s var(--ease) 0.95s forwards;
 }
@@ -836,8 +839,8 @@ a.service-row { text-decoration: none; display: flex; gap: 20px; align-items: fl
 <!-- ── NAV ─────────────────────────────────────────────────── -->
 <nav id="top-nav">
   <div class="nav-inner">
-    <a href="index-webflow-w.html" class="nav-logo">
-      <img src="LOGO-B_eng.png" alt="KUAN'S LIVING"
+    <a href="index-website.html" class="nav-logo">
+      <img src="LOGO-B.png" alt="KUAN'S LIVING"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
       <span style="display:none">KUAN'S LIVING</span>
     </a>
@@ -853,23 +856,22 @@ a.service-row { text-decoration: none; display: flex; gap: 20px; align-items: fl
           </ul>
         </li>
         <li>
-          <a href="javascript:void(0)">寢飾選品</a>
+          <a href="javascript:void(0)">寬庭選品</a>
           <ul class="nav-dropdown">
-            <li><a href="linens-bedroom.html">寢室系列</a></li>
+            <li><a href="linens-bed.html">臥室系列</a></li>
             <li><a href="linens-bath.html">浴室系列</a></li>
-            <li><a href="select-design.html">當代設計</a></li>
-            <li><a href="select-craft.html">工藝精選</a></li>
-            <li><a href="select-art.html">裝飾藝術</a></li>
+            <li><a href="textile-accessories.html">織品配件</a></li>
             <li><a href="select-fragrance.html">居家香氛</a></li>
+            <li><a href="select-crafts-decor.html">工藝裝飾</a></li>
           </ul>
         </li>
         <li>
           <a href="javascript:void(0)">企業合作</a>
           <ul class="nav-dropdown">
-            <li><a href="services-aviation.html">航空機上寢具</a></li>
-            <li><a href="services-hotel.html">酒店寢飾定製</a></li>
-            <li><a href="services-gifts.html">企業禮贈品</a></li>
-            <li><a href="services-interior.html">軟裝設計服務</a></li>
+            <li><a href="services-aviation.html">航空</a></li>
+            <li><a href="services-hotel.html">酒店</a></li>
+            <li><a href="services-gifts.html">禮贈品</a></li>
+            <li><a href="services-interior.html">軟裝服務</a></li>
           </ul>
         </li>
         <li class="nav-direct">
@@ -911,19 +913,17 @@ a.service-row { text-decoration: none; display: flex; gap: 20px; align-items: fl
     <div class="mobile-sub">
       <a href="linens-bedroom.html" onclick="toggleMenu()">寢室系列</a>
       <a href="linens-bath.html" onclick="toggleMenu()">浴室系列</a>
-      <a href="select-design.html" onclick="toggleMenu()">當代設計</a>
-      <a href="select-craft.html" onclick="toggleMenu()">工藝精選</a>
-      <a href="select-art.html" onclick="toggleMenu()">裝飾藝術</a>
+      <a href="select-crafts-decor.html" onclick="toggleMenu()">工藝裝飾</a>
       <a href="select-fragrance.html" onclick="toggleMenu()">居家香氛</a>
     </div>
   </div>
   <div class="mobile-item">
     <div class="mobile-item-header" onclick="toggleMobileItem(this)">企業合作<span class="mobile-arrow">▾</span></div>
     <div class="mobile-sub">
-      <a href="services-aviation.html" onclick="toggleMenu()">航空機上寢具</a>
-      <a href="services-hotel.html" onclick="toggleMenu()">酒店寢飾定製</a>
-      <a href="services-gifts.html" onclick="toggleMenu()">企業禮贈品</a>
-      <a href="services-interior.html" onclick="toggleMenu()">軟裝設計服務</a>
+      <a href="services-aviation.html" onclick="toggleMenu()">航空</a>
+      <a href="services-hotel.html" onclick="toggleMenu()">酒店</a>
+      <a href="services-gifts.html" onclick="toggleMenu()">禮贈品</a>
+      <a href="services-interior.html" onclick="toggleMenu()">軟裝服務</a>
     </div>
   </div>
   <a href="https://shop.kuansliving.com" target="_blank" class="mobile-direct">購物網站</a>
@@ -948,19 +948,15 @@ a.service-row { text-decoration: none; display: flex; gap: 20px; align-items: fl
   <div class="hero-content">
     <!-- Badge Pill — Digitize 風格 -->
     <div class="hero-badge">
-      <div class="hero-badge-avatars">
-        <div class="hero-badge-av">TW</div>
-        <div class="hero-badge-av">IT</div>
-      </div>
       <span class="hero-badge-label">Since 1991 · Taipei &amp; Milano</span>
     </div>
     <h1 class="hero-title">
-      <img src="index-LOGO_eng.png" alt="KUAN'S LIVING" class="hero-brand-img">
+      <img src="LOGO-w_ENG.png" alt="KUAN'S LIVING" class="hero-brand-img">
       <em class="hero-en">Where Eastern Mastery Meets Western Refinement</em>
       <span class="hero-title-zh">承襲東西文化底蘊</span>
     </h1>
     <div class="hero-cta">
-      <a href="about.html" class="btn-hero btn-fill">品牌故事</a>
+      <a href="about.html" class="btn-hero btn-fill">品牌故事↗</a>
     </div>
   </div>
   <div class="hero-scroll">
@@ -1027,28 +1023,28 @@ a.service-row { text-decoration: none; display: flex; gap: 20px; align-items: fl
         <a href="services-aviation.html" class="service-row">
           <span class="service-num">01</span>
           <div class="service-info">
-            <h4>航空機上寢具</h4>
+            <h4>航空</h4>
             <p>連續榮獲德國漢堡國際空品獎「最佳機上寢具首獎」。</p>
           </div>
         </a>
         <a href="services-hotel.html" class="service-row">
           <span class="service-num">02</span>
           <div class="service-info">
-            <h4>酒店寢飾定製</h4>
+            <h4>酒店</h4>
             <p>台北文華東方、高雄然一等亞洲頂級酒店寢飾合作夥伴。</p>
           </div>
         </a>
         <a href="services-gifts.html" class="service-row">
           <span class="service-num">03</span>
           <div class="service-info">
-            <h4>企業禮贈品</h4>
+            <h4>禮贈品</h4>
             <p>量身定製的專屬禮贈品，彰顯尊榮品味，提升品牌形象。</p>
           </div>
         </a>
         <a href="services-interior.html" class="service-row">
           <span class="service-num">04</span>
           <div class="service-info">
-            <h4>軟裝設計服務</h4>
+            <h4>軟裝服務</h4>
             <p>頂級私宅與商業空間策畫，兼顧功能、比例與美學平衡。</p>
           </div>
         </a>
